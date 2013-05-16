@@ -18,10 +18,15 @@ using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 
+
+
+
+
+
 namespace Chinchilla {
     class Basechart {
         private ChartPlotter chart;
-       
+       //
         private DispatcherTimer timerSine;
         private double t = 0;
         private Dispatcher disp;
@@ -45,6 +50,7 @@ namespace Chinchilla {
             pkglist = packagelist;
             foreach (KeyValuePair<string, string> pkg in pkglist) {
                 datalist.Add(pkg.Key, new ObservableDataSource<Point>());
+                chart.
                 chart.AddLineGraph(datalist[pkg.Key], Color.FromRgb(178, 58, 238), 2, pkg.Key);
             }
             timerSine.Start();
