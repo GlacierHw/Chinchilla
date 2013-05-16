@@ -64,8 +64,10 @@ namespace Chinchilla {
         }
 
         public virtual double getData(String package) {
-            Random rd = new Random();
-            return (double)rd.Next(100);
-        }
+            String datausage = executeCmd("adb shell cat proc/uid_stat/" + uid + "/tcp_rcv", true);
+            if(datausage.IndexOf("such") > 0) {
+                datausage = "0";
+            }
+            double data = Convert.ToDouble(datausage)/1024;
     }
 }
