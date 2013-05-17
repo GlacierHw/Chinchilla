@@ -34,11 +34,11 @@ namespace Chinchilla {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            /*dataSources = new ObservableDataSource<Point>();
+            dataSources = new ObservableDataSource<Point>();
             dataSources1 = new ObservableDataSource<Point>();
             chart0.AddLineGraph(dataSources, Color.FromRgb(178,58,238), 2,"流量消耗KB");
             chart0.AddLineGraph(dataSources1, Color.FromRgb(0, 58, 238), 2, "内存消耗MB");
-            chart0.FitToView();*/
+            chart0.FitToView();
             
             pkginfo = new Dictionary<string, string>();
             executeCmd("adb shell dumpsys package > " + pkgfile,false);
@@ -72,22 +72,22 @@ namespace Chinchilla {
             listBox1.SelectedIndex = 1;
 
 
-            /*timerSine = new DispatcherTimer();
+            timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(timerSine_Tick);
-            timerSine.Interval = new TimeSpan(0,0,1);*/
-            Basechart bc = new Basechart(Dispatcher,chart0,pkginfo);
-        
+            timerSine.Interval = new TimeSpan(0,0,1);
+            
         }
 
         private void timerSine_Tick(object sender, EventArgs e)
         {   
+           
             String datausage = executeCmd("adb shell cat proc/uid_stat/" + uid + "/tcp_rcv", true);
             if(datausage.IndexOf("such") > 0) {
                 datausage = "0";
             }
             double data = Convert.ToDouble(datausage)/1024;
             dataSources.AppendAsync(Dispatcher, new Point(t,data));
-            //dataSources1.AppendAsync(Dispatcher, new Point(t, data/10));
+            dataSources1.AppendAsync(Dispatcher, new Point(t, data/10));
             t+= timerSine.Interval.Seconds;
         }
 
