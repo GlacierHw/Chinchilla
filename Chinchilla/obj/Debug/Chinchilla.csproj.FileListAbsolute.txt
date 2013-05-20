@@ -29,3 +29,7 @@ D:\chinchilla\Chinchilla\obj\Debug\Window2.baml
 D:\chinchilla\Chinchilla\obj\Debug\Window2.g.cs
 D:\chinchilla\Chinchilla\obj\Debug\ThresholdSetting.baml
 D:\chinchilla\Chinchilla\obj\Debug\ThresholdSetting.g.cs
+E:\workspace\Chinchilla\Chinchilla\obj\Debug\ThresholdSetting.baml
+E:\workspace\Chinchilla\Chinchilla\obj\Debug\Window2.baml
+E:\workspace\Chinchilla\Chinchilla\obj\Debug\ThresholdSetting.g.cs
+E:\workspace\Chinchilla\Chinchilla\obj\Debug\Window2.g.cs

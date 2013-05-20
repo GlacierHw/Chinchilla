@@ -32,7 +32,7 @@ namespace Chinchilla
             Match memM = memReg.Match(meminfo);
             if (memM.Groups.Count > 1)
             {
-                memdata = Convert.ToDouble(memM.Groups[1].ToString());
+                memdata = Convert.ToDouble(memM.Groups[1].ToString())/1024;
             }
 
             this.currentData = memdata;
