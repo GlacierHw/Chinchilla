@@ -37,8 +37,8 @@
                     <d3:ChartPlotter.VerticalAxis>
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:ChartPlotter.VerticalAxis>
-                    <d3:HorizontalAxisTitle Content="流量消耗(KB)" Name="chart_datausageTitle" VerticalAlignment="Top">
-                    </d3:HorizontalAxisTitle>
+                    <d3:VerticalAxisTitle Content="流量消耗(KB)" Name="chart_datausageTitle" VerticalAlignment="Left">
+                    </d3:VerticalAxisTitle>
                 </d3:ChartPlotter>
             </Grid>
             <Grid>
