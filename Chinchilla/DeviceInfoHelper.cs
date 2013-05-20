@@ -36,16 +36,23 @@ namespace Chinchilla
 
             Executecmd.ExecuteCommandSync("adb shell dumpsys package", out allpkginfo);
 
+            /*
             FileStream fi = new FileStream(pkgfile, FileMode.Open);
             StreamReader m_streamReader = new StreamReader(fi);
             m_streamReader.BaseStream.Seek(0, SeekOrigin.Begin);
             string strLine = m_streamReader.ReadLine();
+            */
 
-            Regex reg = new Regex(@"Package \[(\S+)\].*userId=(\d*)");//Package ['(\S+)']
+            Regex reg = new Regex(@".*Package \[(\S+)\].*\s*userId=(\d*)");//Package ['(\S+)']
             MatchCollection mMatches = reg.Matches(allpkginfo);
-            foreach (var m in mMatches)
+            foreach (Match m in mMatches)
             {
+                if (m.Groups.Count > 2)
+                {
+                    pkginfo.Add(m.Groups[1].ToString(),m.Groups[2].ToString());
+                }
             }
+            /*
             while (strLine != null)
             {
                 //Console.WriteLine(strLine);
@@ -64,6 +71,7 @@ namespace Chinchilla
                 }
                 strLine = m_streamReader.ReadLine();
             }
+             * */
 
             return pkginfo;
         }

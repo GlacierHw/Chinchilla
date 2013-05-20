@@ -7,7 +7,7 @@
         <Menu Height="26" Name="menu1" Width="Auto" VerticalAlignment="Top" DockPanel.Dock="Top">
             <MenuItem Header="File" />
             <MenuItem Header="Edit" />
-            <MenuItem Header="Setting" />
+            <MenuItem Header="Setting" Click="MenuItem_Click" />
             <MenuItem Header="Help" />
         </Menu>
         <ToolBarPanel Height="26" Name="toolBarPanel1" Width="Auto" VerticalAlignment="Top" DockPanel.Dock="Top">
@@ -19,9 +19,13 @@
         <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
             <StatusBarItem Name ="status_proname" Content="Processname" Width="200" />
             <StatusBarItem Name ="status_datausage" Content="datausage" Width="150" />
+            <StatusBarItem Name ="status_datausage_thre" Content="阈值:" Width="100" />
             <StatusBarItem Name ="status_cpu" Content="cpu" Width="50" />
+            <StatusBarItem Name ="status_cpu_thre" Content="阈值:" Width="60" />
             <StatusBarItem Name ="status_mem" Content="pss" Width="100" />
+            <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="100"/>
             <StatusBarItem Name ="status_power" Content="power" />
+            <StatusBarItem />
         </StatusBar>
         <ListView Height="Auto" Name="listView1" Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left" SelectionMode="Single" SelectionChanged="listView1_SelectionChanged" />
         <UniformGrid  Columns="2" Rows="2">

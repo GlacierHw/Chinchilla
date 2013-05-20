@@ -86,9 +86,16 @@
     <Compile Include="DeviceInfoHelper.cs" />
     <Compile Include="Executecmd.cs" />
     <Compile Include="MemChart.cs" />
+    <Compile Include="ThresholdSetting.xaml.cs">
+      <DependentUpon>ThresholdSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
+    <Page Include="ThresholdSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
