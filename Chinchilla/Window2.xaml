@@ -17,14 +17,14 @@
             </ToolBar>
         </ToolBarPanel>
         <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
-            <StatusBarItem Name ="status_proname" Content="Processname" Width="200" />
-            <StatusBarItem Name ="status_datausage" Content="datausage" Width="150" />
-            <StatusBarItem Name ="status_datausage_thre" Content="阈值:" Width="100" />
-            <StatusBarItem Name ="status_cpu" Content="cpu" Width="50" />
-            <StatusBarItem Name ="status_cpu_thre" Content="阈值:" Width="60" />
-            <StatusBarItem Name ="status_mem" Content="pss" Width="100" />
-            <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="100"/>
-            <StatusBarItem Name ="status_power" Content="power" />
+            <StatusBarItem Name ="status_name" Content="测试包名:" Width="Auto" />
+            <StatusBarItem Name ="status_proname" Content="Processname" Width="Auto" />
+            <StatusBarItem Name ="status_datausage" Content="datausage" Width="Auto" />
+            <StatusBarItem Name ="status_datausage_thre" Content="阈值:" Width="Auto" />
+            <StatusBarItem Name ="status_cpu" Content="cpu" Width="Auto" />
+            <StatusBarItem Name ="status_cpu_thre" Content="阈值:" Width="Auto" />
+            <StatusBarItem Name ="status_mem" Content="pss" Width="Auto" />
+            <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="Auto"/>
             <StatusBarItem />
         </StatusBar>
         <ListView Height="Auto" Name="listView1" Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left" SelectionMode="Single" SelectionChanged="listView1_SelectionChanged" />
@@ -61,7 +61,7 @@
                     <d3:ChartPlotter.VerticalAxis>
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:ChartPlotter.VerticalAxis>
-                    <d3:HorizontalAxisTitle Content="内存使用(MB)" Name="chart_memTitle" VerticalAlignment="Top">
+                    <d3:HorizontalAxisTitle Content="内存使用(KB)" Name="chart_memTitle" VerticalAlignment="Top">
                     </d3:HorizontalAxisTitle>
                 </d3:ChartPlotter>
             </Grid>
@@ -78,5 +78,6 @@
                 </d3:ChartPlotter>
             </Grid>
         </UniformGrid >
+        <Label Height="28" Name="label1" Width="120">Label</Label>
     </DockPanel>
 </Window>

@@ -23,7 +23,6 @@ namespace Chinchilla {
     class Basechart {
 
         private ChartPlotter chart;
-
         private DispatcherTimer timerSine;
         private double t = 0;
         private Dispatcher disp;
@@ -32,6 +31,7 @@ namespace Chinchilla {
         protected Dictionary<string, string> pkglist;
         private Dictionary<string, ObservableDataSource<Point>> datalist;
         protected double currentData;
+        protected List<LineGraph> listgraph = new List<LineGraph>();
         public double CurrentData
         {
             get
@@ -45,6 +45,7 @@ namespace Chinchilla {
             //Init variables
             disp = p;
             chart = newchart;
+            //chart.Children.RemoveAll<LineGraph>;
             chart.FitToView();
             datalist = new Dictionary<string, ObservableDataSource<Point>>();
 
@@ -58,16 +59,18 @@ namespace Chinchilla {
             foreach (KeyValuePair<string, string> pkg in pkglist)
             {
                 datalist.Add(pkg.Key, new ObservableDataSource<Point>());
-                chart.AddLineGraph(datalist[pkg.Key], Color.FromRgb(72, 118, 255), 2, pkg.Key);
+                listgraph.Add(chart.AddLineGraph(datalist[pkg.Key], Color.FromRgb(72, 118, 255), 2, pkg.Key));
             }
             timerSine.Start();
         }
 
         private void timerSine_Tick(object sender, EventArgs e)
         {
-            foreach (KeyValuePair<string, ObservableDataSource<Point>> pkg in datalist)
-            {
-                pkg.Value.AppendAsync(disp, new Point(t, getData(pkg.Key)));
+            foreach (KeyValuePair<string, ObservableDataSource<Point>> pkg in datalist) {
+                Double value = getData(pkg.Key);
+                if (value >= 0) {
+                    pkg.Value.AppendAsync(disp, new Point(t, value));
+                }
                 t += timerSine.Interval.Seconds;
             }
         }
@@ -76,6 +79,12 @@ namespace Chinchilla {
         {
             Random rd = new Random();
             return (double)rd.Next(100);
+        }
+
+        public void clearLines() {
+            foreach(LineGraph lg in listgraph){
+                chart.Children.Remove(lg);
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Chinchilla
 {
     class CpuChart : Basechart
     {
+        public String charttype = "cpu";
         public override double getData(string package)
         {
             double cpudata = 0;

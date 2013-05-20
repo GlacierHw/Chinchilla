@@ -67,6 +67,9 @@ namespace Chinchilla
             }
             else
             {
+                foreach (Basechart chart in testchart) {
+                    chart.clearLines();
+                }
                 testchart.Clear();
                 testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
                 testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
@@ -78,8 +81,9 @@ namespace Chinchilla
         {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateStatus);
-            timerSine.Interval = new TimeSpan(0, 0, 1);
+            timerSine.Interval = new TimeSpan(0, 0, 3);
             timerSine.Start();
+            
         }
 
         private void updateStatus(object sender, EventArgs e)
@@ -94,15 +98,15 @@ namespace Chinchilla
             this.status_proname.Content = selectedProc;
             if (this.testchart.Count > 0)
             {
-                this.status_datausage.Content = this.testchart[0].CurrentData+"(KB)";
-                this.status_cpu.Content = this.testchart[1].CurrentData+"%";
-                this.status_mem.Content = this.testchart[2].CurrentData+"(KB)";
+                this.status_datausage.Content = "流量:"+this.testchart[0].CurrentData.ToString("f2")+"KB";
+                this.status_cpu.Content = "CPU:" + this.testchart[1].CurrentData+"%";
+                this.status_mem.Content = "内存:" + this.testchart[2].CurrentData.ToString("f2") + "MB";
             }
             if (this.threValue.Count > 0)
             {
-                this.status_datausage_thre.Content = "阈值:" + this.threValue[0] + "(KB)";
+                this.status_datausage_thre.Content = "阈值:" + this.threValue[0] + "KB";
                 this.status_cpu_thre.Content = "阈值:" + this.threValue[1] + "%";
-                this.status_mem_thre.Content = "阈值:" + this.threValue[2] + "(KB)";
+                this.status_mem_thre.Content = "阈值:" + this.threValue[2] + "MB";
 
                 if (this.testchart.Count > 0)
                 {

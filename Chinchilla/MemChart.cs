@@ -22,6 +22,7 @@ namespace Chinchilla
 {
     class MemChart : Basechart
     {
+        public String charttype = "内存";
         public override double getData(string package)
         {
             double memdata = 0;

@@ -47,7 +47,7 @@ namespace Chinchilla
             MatchCollection mMatches = reg.Matches(allpkginfo);
             foreach (Match m in mMatches)
             {
-                if (m.Groups.Count > 2 )
+                if (m.Groups.Count > 2 && Convert.ToInt32(m.Groups[2].ToString()) >10000)
                 {
                     pkginfo.Add(m.Groups[1].ToString(),m.Groups[2].ToString());
                 }
