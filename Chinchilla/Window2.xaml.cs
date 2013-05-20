@@ -24,7 +24,10 @@ namespace Chinchilla
         private Dictionary<string, string> selectedPackage = new Dictionary<string, string>();
         Dictionary<string, string> pkginfo = new Dictionary<string, string>();
         List<Basechart> testchart = new List<Basechart>();
+        public List<string> threValue = new List<string>();
         //private DispatcherTimer timerSine;
+
+        private ThresholdSetting thresholdSettingWindow;
 
         public Window2()
         {
@@ -95,7 +98,45 @@ namespace Chinchilla
                 this.status_cpu.Content = this.testchart[1].CurrentData+"%";
                 this.status_mem.Content = this.testchart[2].CurrentData+"(KB)";
             }
+            if (this.threValue.Count > 0)
+            {
+                this.status_datausage_thre.Content = "阈值:" + this.threValue[0] + "(KB)";
+                this.status_cpu_thre.Content = "阈值:" + this.threValue[1] + "%";
+                this.status_mem_thre.Content = "阈值:" + this.threValue[2] + "(KB)";
 
+                if (this.testchart.Count > 0)
+                {
+                    if (this.testchart[0].CurrentData > Convert.ToDouble(this.threValue[0]))
+                    {
+                        this.status_datausage.Background = new SolidColorBrush(Colors.Red);
+                    }
+
+                    if (this.testchart[1].CurrentData > Convert.ToDouble(this.threValue[1]))
+                    {
+                        this.status_cpu.Background = new SolidColorBrush(Colors.Red);
+                    }
+
+                    if (this.testchart[2].CurrentData > Convert.ToDouble(this.threValue[2]))
+                    {
+                        this.status_mem.Background = new SolidColorBrush(Colors.Red);
+                    }
+                }
+            }
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.thresholdSettingWindow == null)
+            {
+                this.thresholdSettingWindow = new ThresholdSetting();
+                this.thresholdSettingWindow.Owner = this;
+                this.thresholdSettingWindow.Show();
+            }
+            else
+            {
+                this.thresholdSettingWindow.Show();
+            }
         }
     }
 }
