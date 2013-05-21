@@ -27,8 +27,11 @@
             <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="Auto"/>
             <StatusBarItem />
         </StatusBar>
-        <ListView Height="Auto" Name="listView1" Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" />
-        <UniformGrid  Columns="2" Rows="2">
+        <Grid DockPanel.Dock="Left">
+        <TextBox Height="25" Name="textBox1" Width="211"  VerticalAlignment="Top" TextChanged="textBox1_TextChanged"/>
+        <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" />
+            </Grid>
+                <UniformGrid  Columns="2" Rows="2">
             <Grid>
                 <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top" >
                     <d3:ChartPlotter.HorizontalAxis>
@@ -80,5 +83,7 @@
             </Grid>
         </UniformGrid >
         <Label Height="28" Name="label1" Width="120">Label</Label>
+        <Grid Height="50" Name="grid1" Width="206" />
+        
     </DockPanel>
 </Window>

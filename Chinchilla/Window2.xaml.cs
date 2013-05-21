@@ -36,8 +36,21 @@ namespace Chinchilla
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            initTextBox();
             updateListview();
             updateStausBar();
+        }
+
+        void initTextBox() {
+            //this.textBox1.DataContextChanged += new DependencyPropertyChangedEventHandler(textBox1_DataContextChanged);
+        }
+
+        void textBox1_TextChanged(object sender, TextChangedEventArgs e) {
+            foreach (KeyValuePair<string, string> pkg in pkginfo) {
+                this.listView1.Items.Add(pkg.Key);
+                //listView1.listView1.FindItem("baidu");
+                //listView1.findi
+            }
         }
 
         void updateListview()
