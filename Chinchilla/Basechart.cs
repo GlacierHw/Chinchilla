@@ -23,7 +23,7 @@ using System.Timers;
 
 namespace Chinchilla {
     class Basechart {
-
+        private String charttype = "";
         private ChartPlotter chart;
         private DispatcherTimer timerSine;
         private double t = 0;
@@ -31,13 +31,14 @@ namespace Chinchilla {
         private String package;
         private String uid = "";
         protected Dictionary<string, string> pkglist = new Dictionary<string, string>();
-        private Dictionary<string, ObservableDataSource<Point>> datalist;
+        protected Dictionary<string, ObservableDataSource<Point>> datalist = new Dictionary<string, ObservableDataSource<Point>>();
         protected double currentData;
         protected List<LineGraph> listgraph = new List<LineGraph>();
         public delegate void DeleFunc();
         private System.Timers.Timer aTimer;
         protected List<Color> colorpool = new List<Color>();
         private int linenum = 0;
+        protected Thread newThread;
         public double CurrentData
         {
             get
@@ -48,8 +49,7 @@ namespace Chinchilla {
 
         public Basechart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
         {
-            //Init variables
-            
+            //Init variables 
             colorpool.Add(Colors.Blue);
             colorpool.Add(Colors.Red);
             colorpool.Add(Colors.Green);
@@ -63,26 +63,23 @@ namespace Chinchilla {
             chart.MouseLeave += new MouseEventHandler(chart_MouseLeave);
             //chart.Legend.Visibility = auto;
             pkglist = packagelist;
-            datalist = new Dictionary<string, ObservableDataSource<Point>>();
+            //datalist = new Dictionary<string, ObservableDataSource<Point>>();
             ThreadStart ts = new ThreadStart(asyncProcData);
-            Thread newThread = new Thread(ts);
+            newThread = new Thread(ts);
             newThread.Start();
-
         }
 
-    
+        public void updatechart(Dictionary<string, string> packagelist) {
+            //pkglist.Clear();
+            pkglist = new Dictionary<string,string>(packagelist);
+            initChart();
+        }
         public void asyncProcData() {
-             //Set timer
-            //TimerCallback timerDelegate = new TimerCallback(timerSine_Tick);
-            //Timer timer = new Timer(timerDelegate, null, 0, 3000);
+         
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(timerSine_Tick);
             aTimer.Interval = 2000; 
-            /*timerSine = new DispatcherTimer();
-            timerSine.Tick += new EventHandler(timerSine_Tick);
-            timerSine.Interval = new TimeSpan(0, 0, 3);
-            timerSine.Start();*/
-            //Start draw chart
+  
             Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                      new DeleFunc(initChart));
             aTimer.Start();
@@ -90,21 +87,25 @@ namespace Chinchilla {
         }
 
         public void initChart() {
+            datalist.Clear();
+            listgraph.Clear();
+            t = 0;
             foreach (KeyValuePair<string, string> pkg in pkglist) {
                 datalist.Add(pkg.Key, new ObservableDataSource<Point>());
                 listgraph.Add(chart.AddLineGraph(datalist[pkg.Key], colorpool[linenum++], 2, pkg.Key));//Color.FromRgb(72, 118, 255)
             }
         }
 
-        public void timerSine_Tick(object sender, EventArgs e)
+        private void timerSine_Tick(object sender, EventArgs e)
         {
             foreach (KeyValuePair<string, ObservableDataSource<Point>> pkg in datalist) {
                 Double value = getData(pkg.Key);
                 if (value >= 0) {
+                    string test = charttype;
                     pkg.Value.AppendAsync(disp, new Point(t, value));
                 }
-                t += aTimer.Interval/1000;
             }
+            t += aTimer.Interval / 1000;
         }
 
         public virtual double getData(String package)

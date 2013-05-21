@@ -64,6 +64,7 @@ namespace Chinchilla
                 string result = proc.StandardOutput.ReadToEnd();
                 // Display the command output.
                 Console.WriteLine(result);
+                proc.WaitForExit();
             }
             catch (Exception objException)
             {
@@ -100,6 +101,7 @@ namespace Chinchilla
                 proc.Start();
                 // Get the output into a string
                 result = proc.StandardOutput.ReadToEnd();
+                proc.Dispose();
                 // Display the command output.
                 //Console.WriteLine(result);
             }
@@ -143,6 +145,7 @@ namespace Chinchilla
                 string result = proc.StandardOutput.ReadToEnd();
                 // Display the command output.
                 Console.WriteLine(result);
+                //proc.WaitForExit();
             }
             catch (Exception objException)
             {
@@ -167,6 +170,7 @@ namespace Chinchilla
                 objThread.Priority = ThreadPriority.AboveNormal;
                 //Start the thread.
                 objThread.Start(new CommandInfo(command,delayTime));
+              
             }
             catch (ThreadStartException objException)
             {
@@ -183,6 +187,7 @@ namespace Chinchilla
                 // Log the exception
                 Console.WriteLine(objException.Message);
             }
+            
         }
     }
 }

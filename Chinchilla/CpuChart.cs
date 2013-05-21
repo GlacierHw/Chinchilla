@@ -27,9 +27,9 @@ namespace Chinchilla
         {
             double cpudata = 0;
             string cpuinfo;
-            Executecmd.ExecuteCommandSync("adb shell dumpsys cpuinfo",out cpuinfo);
+            Executecmd.ExecuteCommandSync("adb shell top -m 15 -d 1 -n 1",out cpuinfo);
            
-            Regex cpuReg = new Regex(@"\s*(\d*)%.*"+package+":");
+            Regex cpuReg = new Regex(@"\s*(\d*)%.*"+package+@"\s*");
             Match cpuM = cpuReg.Match(cpuinfo);
             if (cpuM.Groups.Count > 1)
             {

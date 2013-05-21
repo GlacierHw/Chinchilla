@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace Chinchilla
 {
@@ -26,7 +27,7 @@ namespace Chinchilla
         List<Basechart> testchart = new List<Basechart>();
         public List<string> threValue = new List<string>();
         //private DispatcherTimer timerSine;
-
+        public delegate void DeleFunc();
         private ThresholdSetting thresholdSettingWindow;
 
         public Window2()
@@ -37,8 +38,14 @@ namespace Chinchilla
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             initTextBox();
-            updateListview();
+            //updateListview();
+            ThreadStart ts = new ThreadStart(updateListview);
+            Thread newThread = new Thread(ts);
+            newThread.Start();
             updateStausBar();
+            testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
+            testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
+            testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
         }
 
         void initTextBox() {
@@ -46,22 +53,25 @@ namespace Chinchilla
         }
 
         void textBox1_TextChanged(object sender, TextChangedEventArgs e) {
+            this.listView1.Items.Clear();
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
-                this.listView1.Items.Add(pkg.Key);
-                //listView1.listView1.FindItem("baidu");
-                //listView1.findi
+                if (pkg.Key.IndexOf(this.textBox1.Text)>= 0)
+                {
+                    this.listView1.Items.Add(pkg.Key);
+                }
             }
         }
 
-        void updateListview()
-        {
+        void updateListview() {
             pkginfo = DeviceInfoHelper.GetPackageInfo();
+            Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                     new DeleFunc(updateListviewDelegate));
+        }
 
-            foreach (KeyValuePair<string, string> pkg in pkginfo)
-            {
+        void updateListviewDelegate() {
+            
+            foreach (KeyValuePair<string, string> pkg in pkginfo) {
                 this.listView1.Items.Add(pkg.Key);
-                //listView1.listView1.FindItem("baidu");
-                //listView1.findi
             }
         }
 
@@ -69,7 +79,7 @@ namespace Chinchilla
         {
             if (listView1.SelectedItems.Count > 5) {
                 listView1.SelectedItems.RemoveAt(5);
-                MessageBox.Show("最多选择5个包监测");
+                MessageBox.Show("最多选择5个包监测","提示");
             }
 
             selectedPackage.Clear();
@@ -83,20 +93,17 @@ namespace Chinchilla
         {
             if (selectedPackage.Count == 0)
             {
-                MessageBox.Show("Please select process");
+                MessageBox.Show("至少选择1个包监测","提示");
             }else if (selectedPackage.Count > 5) {
-                 MessageBox.Show("最多选择5个包监测");
+                 MessageBox.Show("最多选择5个包监测","提示");
             }
             else
             {
                 foreach (Basechart chart in testchart) {
                     chart.clearLines();
-                   
+                    chart.updatechart(selectedPackage);
                 }
-                testchart.Clear();
-                testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
-                testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
-                testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
+                //testchart.Clear();          
             }
         }
 
@@ -167,5 +174,10 @@ namespace Chinchilla
                 this.thresholdSettingWindow.Show();
             }
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e) {
+            MessageBox.Show("1.右键点击图标可保存图片及查看更多操作，滚轮可放大/缩小图片\n 2.目前阈值报警功能仅支持监测一个应用时使用\n3.beta版功能较少，有任何需求请联系邓呈亮&&何韡", "提示");
+        }
+
     }
 }

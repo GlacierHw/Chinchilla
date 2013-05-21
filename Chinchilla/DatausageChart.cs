@@ -28,7 +28,7 @@ namespace Chinchilla
             String rcv;
             String snd;
             double datausage=0;
-            Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_rcv", out snd);
+            Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_snd", out snd);
             Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_rcv", out rcv);
             if (rcv.IndexOf("such") > 0 || snd.IndexOf("such") > 0) {
                 return 0;
