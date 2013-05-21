@@ -30,14 +30,10 @@ namespace Chinchilla
             double datausage=0;
             Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_rcv", out snd);
             Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_rcv", out rcv);
-            if (rcv.IndexOf("such") > 0) {
-                rcv = "0";
+            if (rcv.IndexOf("such") > 0 || snd.IndexOf("such") > 0) {
+                return 0;
             }
 
-            if (snd.IndexOf("such") > 0) {
-                snd = "0";
-            }
-            
             if (snd == String.Empty || rcv == String.Empty)
                 return -1;
             datausage = Convert.ToDouble(rcv) + Convert.ToDouble(snd);

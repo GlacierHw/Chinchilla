@@ -18,27 +18,28 @@
         </ToolBarPanel>
         <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
             <StatusBarItem Name ="status_name" Content="测试包名:" Width="Auto" />
-            <StatusBarItem Name ="status_proname" Content="Processname" Width="Auto" />
-            <StatusBarItem Name ="status_datausage" Content="datausage" Width="Auto" />
+            <StatusBarItem Name ="status_proname" Width="Auto" />
+            <StatusBarItem Name ="status_datausage" Content="流量:" Width="Auto" />
             <StatusBarItem Name ="status_datausage_thre" Content="阈值:" Width="Auto" />
-            <StatusBarItem Name ="status_cpu" Content="cpu" Width="Auto" />
+            <StatusBarItem Name ="status_cpu" Content="cpu:" Width="Auto" />
             <StatusBarItem Name ="status_cpu_thre" Content="阈值:" Width="Auto" />
-            <StatusBarItem Name ="status_mem" Content="pss" Width="Auto" />
+            <StatusBarItem Name ="status_mem" Content="内存:" Width="Auto" />
             <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="Auto"/>
             <StatusBarItem />
         </StatusBar>
-        <ListView Height="Auto" Name="listView1" Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left" SelectionMode="Single" SelectionChanged="listView1_SelectionChanged" />
+        <ListView Height="Auto" Name="listView1" Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" />
         <UniformGrid  Columns="2" Rows="2">
             <Grid>
-                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto">
+                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top" >
                     <d3:ChartPlotter.HorizontalAxis>
                         <d3:HorizontalIntegerAxis></d3:HorizontalIntegerAxis>
                     </d3:ChartPlotter.HorizontalAxis>
                     <d3:ChartPlotter.VerticalAxis>
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:ChartPlotter.VerticalAxis>
-                    <d3:VerticalAxisTitle Content="流量消耗(KB)" Name="chart_datausageTitle" VerticalAlignment="Left">
-                    </d3:VerticalAxisTitle>
+                    <d3:HorizontalAxisTitle Content="流量消耗(KB)" Name="chart_datausageTitle" VerticalAlignment="Top">
+       
+                    </d3:HorizontalAxisTitle>
                 </d3:ChartPlotter>
             </Grid>
             <Grid>
@@ -73,7 +74,7 @@
                     <d3:ChartPlotter.VerticalAxis>
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:ChartPlotter.VerticalAxis>
-                    <d3:HorizontalAxisTitle Content="实时电流(毫安)" Name="chart_kpiTitle" VerticalAlignment="Top">
+                    <d3:HorizontalAxisTitle Content="预留" Name="chart_kpiTitle" VerticalAlignment="Top">
                     </d3:HorizontalAxisTitle>
                 </d3:ChartPlotter>
             </Grid>

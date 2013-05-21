@@ -1,0 +1,17 @@
+E:\workspace\Chinchilla\Chinchilla\bin\Release\Chinchilla.exe
+E:\workspace\Chinchilla\Chinchilla\bin\Release\Chinchilla.pdb
+E:\workspace\Chinchilla\Chinchilla\bin\Release\DynamicDataDisplay.dll
+E:\workspace\Chinchilla\Chinchilla\obj\Release\ResolveAssemblyReference.cache
+E:\workspace\Chinchilla\Chinchilla\obj\Release\ThresholdSetting.baml
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Window1.baml
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Window2.baml
+E:\workspace\Chinchilla\Chinchilla\obj\Release\ThresholdSetting.g.cs
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Window1.g.cs
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Window2.g.cs
+E:\workspace\Chinchilla\Chinchilla\obj\Release\App.g.cs
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla_MarkupCompile.cache
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.g.resources
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.Properties.Resources.resources
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.csproj.GenerateResource.Cache
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.exe
+E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.pdb

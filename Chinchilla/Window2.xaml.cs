@@ -47,11 +47,18 @@ namespace Chinchilla
             foreach (KeyValuePair<string, string> pkg in pkginfo)
             {
                 this.listView1.Items.Add(pkg.Key);
+                //listView1.listView1.FindItem("baidu");
+                //listView1.findi
             }
         }
 
         private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (listView1.SelectedItems.Count > 5) {
+                listView1.SelectedItems.RemoveAt(5);
+                MessageBox.Show("最多选择5个包监测");
+            }
+
             selectedPackage.Clear();
             foreach(var item in this.listView1.SelectedItems)
             {
@@ -64,11 +71,14 @@ namespace Chinchilla
             if (selectedPackage.Count == 0)
             {
                 MessageBox.Show("Please select process");
+            }else if (selectedPackage.Count > 5) {
+                 MessageBox.Show("最多选择5个包监测");
             }
             else
             {
                 foreach (Basechart chart in testchart) {
                     chart.clearLines();
+                   
                 }
                 testchart.Clear();
                 testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
@@ -86,8 +96,10 @@ namespace Chinchilla
             
         }
 
-        private void updateStatus(object sender, EventArgs e)
-        {
+        private void updateStatus(object sender, EventArgs e) {
+            if (listView1.SelectedItems.Count > 1) {
+                return;
+            }
             string selectedProc = "";
             foreach(var pkginfo in this.selectedPackage)
             {
