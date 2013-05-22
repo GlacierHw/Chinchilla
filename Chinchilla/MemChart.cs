@@ -27,8 +27,9 @@ namespace Chinchilla
         {
             double memdata = 0;
             string meminfo;
+            //Executecmd.ExecuteCommandSync("adb shell dumpsys meminfo " + package, out meminfo);
             Executecmd.ExecuteCommandSync("adb shell dumpsys meminfo " + package, out meminfo);
-
+            //return 100.0;
             Regex memReg = new Regex(@".*TOTAL\s*(\d*)\s*");
             Match memM = memReg.Match(meminfo);
             if (memM.Groups.Count > 1)

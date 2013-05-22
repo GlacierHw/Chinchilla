@@ -33,7 +33,7 @@
             </Grid>
                 <UniformGrid  Columns="2" Rows="2">
             <Grid>
-                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top" >
+                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top">
                     <d3:ChartPlotter.HorizontalAxis>
                         <d3:HorizontalIntegerAxis></d3:HorizontalIntegerAxis>
                     </d3:ChartPlotter.HorizontalAxis>

@@ -26,7 +26,8 @@ namespace Chinchilla {
         private String charttype = "";
         private ChartPlotter chart;
         private DispatcherTimer timerSine;
-        private double t = 0;
+        protected double t = 0;
+        private bool testlock = false;
         private Dispatcher disp;
         private String package;
         private String uid = "";
@@ -35,7 +36,7 @@ namespace Chinchilla {
         protected double currentData;
         protected List<LineGraph> listgraph = new List<LineGraph>();
         public delegate void DeleFunc();
-        private System.Timers.Timer aTimer;
+        protected System.Timers.Timer aTimer;
         protected List<Color> colorpool = new List<Color>();
         private int linenum = 0;
         protected Thread newThread;
@@ -62,7 +63,7 @@ namespace Chinchilla {
             chart.MouseMove += new MouseEventHandler(chart_MouseMove);
             chart.MouseLeave += new MouseEventHandler(chart_MouseLeave);
             //chart.Legend.Visibility = auto;
-            pkglist = packagelist;
+            //pkglist = packagelist;
             //datalist = new Dictionary<string, ObservableDataSource<Point>>();
             ThreadStart ts = new ThreadStart(asyncProcData);
             newThread = new Thread(ts);
@@ -78,17 +79,18 @@ namespace Chinchilla {
          
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(timerSine_Tick);
-            aTimer.Interval = 2000; 
+            aTimer.Interval = 5000; 
   
             Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                      new DeleFunc(initChart));
-            aTimer.Start();
-            
+            aTimer.Start();       
         }
 
         public void initChart() {
+            clearLines();
             datalist.Clear();
             listgraph.Clear();
+            testlock = false;
             t = 0;
             foreach (KeyValuePair<string, string> pkg in pkglist) {
                 datalist.Add(pkg.Key, new ObservableDataSource<Point>());
@@ -98,6 +100,10 @@ namespace Chinchilla {
 
         private void timerSine_Tick(object sender, EventArgs e)
         {
+            while(testlock) {
+                Thread.Sleep(50);
+            }
+            testlock = true;
             foreach (KeyValuePair<string, ObservableDataSource<Point>> pkg in datalist) {
                 Double value = getData(pkg.Key);
                 if (value >= 0) {
@@ -106,6 +112,7 @@ namespace Chinchilla {
                 }
             }
             t += aTimer.Interval / 1000;
+            testlock = false;
         }
 
         public virtual double getData(String package)

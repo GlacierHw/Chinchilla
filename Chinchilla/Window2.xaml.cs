@@ -63,17 +63,21 @@ namespace Chinchilla
         }
 
         void updateListview() {
-            pkginfo = DeviceInfoHelper.GetPackageInfo();
-            Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+            while (listView1.Items.Count == 0) { 
+                pkginfo = DeviceInfoHelper.GetPackageInfo();
+                Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                      new DeleFunc(updateListviewDelegate));
+                Thread.Sleep(2000);
+            }
         }
 
         void updateListviewDelegate() {
-            
+
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
                 this.listView1.Items.Add(pkg.Key);
             }
         }
+            
 
         private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -100,7 +104,6 @@ namespace Chinchilla
             else
             {
                 foreach (Basechart chart in testchart) {
-                    chart.clearLines();
                     chart.updatechart(selectedPackage);
                 }
                 //testchart.Clear();          
@@ -111,7 +114,7 @@ namespace Chinchilla
         {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateStatus);
-            timerSine.Interval = new TimeSpan(0, 0, 3);
+            timerSine.Interval = new TimeSpan(0, 0, 5);
             timerSine.Start();
             
         }

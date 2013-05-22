@@ -23,6 +23,7 @@ namespace Chinchilla
     class DatausageChart : Basechart
     {
         public String charttype = "流量";
+        private Dictionary<string, double> initData = new Dictionary<string, double>();
         public override double getData(string package)
         {            
             String rcv;
@@ -31,13 +32,18 @@ namespace Chinchilla
             Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_snd", out snd);
             Executecmd.ExecuteCommandSync("adb shell cat proc/uid_stat/" + pkglist[package] + "/tcp_rcv", out rcv);
             if (rcv.IndexOf("such") > 0 || snd.IndexOf("such") > 0) {
+                initData[package] = 0;
                 return 0;
+                
             }
 
             if (snd == String.Empty || rcv == String.Empty)
                 return -1;
             datausage = Convert.ToDouble(rcv) + Convert.ToDouble(snd);
-            datausage = datausage / 1024;
+            if (this.t == 0) {
+                initData[package] = datausage;
+            }
+            datausage = (datausage - initData[package]) / 1024;
             this.currentData = datausage;
             return datausage;
         }
@@ -45,6 +51,7 @@ namespace Chinchilla
         public DatausageChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist)
         {
+           
         }
     }
 }
