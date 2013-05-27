@@ -64,10 +64,18 @@ namespace Chinchilla
 
         void updateListview() {
             while (listView1.Items.Count == 0) { 
-                pkginfo = DeviceInfoHelper.GetPackageInfo();
-                Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
-                                                     new DeleFunc(updateListviewDelegate));
-                Thread.Sleep(2000);
+                try
+                {
+                    pkginfo = DeviceInfoHelper.GetPackageInfo();
+                    Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                         new DeleFunc(updateListviewDelegate));
+                    Thread.Sleep(2000);
+                }
+                catch (System.Exception ex)
+                {
+                	
+                }
+                
             }
         }
 
