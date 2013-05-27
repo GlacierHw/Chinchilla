@@ -65,7 +65,7 @@
                     <d3:ChartPlotter.VerticalAxis>
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:ChartPlotter.VerticalAxis>
-                    <d3:HorizontalAxisTitle Content="内存使用(KB)" Name="chart_memTitle" VerticalAlignment="Top">
+                    <d3:HorizontalAxisTitle Content="内存使用(MB)" Name="chart_memTitle" VerticalAlignment="Top">
                     </d3:HorizontalAxisTitle>
                 </d3:ChartPlotter>
             </Grid>
