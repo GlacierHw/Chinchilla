@@ -1,0 +1,89 @@
+﻿<Window x:Class="Chinchilla.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        Title="Chinchilla Beta1.0" Height="768" Width="1024" Loaded="Window_Loaded" Margin="0">
+    <DockPanel Name="dockPanel1">
+        <Menu Height="26" Name="menu1" Width="Auto" VerticalAlignment="Top" DockPanel.Dock="Top">
+            <MenuItem Header="File" Visibility="Visible" IsEnabled="False" />
+            <MenuItem Header="Edit"  Visibility="Visible" IsEnabled="False" />
+            <MenuItem Header="Setting" Visibility="Visible" IsEnabled="True" Click="MenuItem_Click" />
+            <MenuItem Header="Help" Click="MenuItem_Click_1" />
+        </Menu>
+        <ToolBarPanel Height="26" Name="toolBarPanel1" Width="Auto" VerticalAlignment="Top" DockPanel.Dock="Top">
+            <ToolBar Height="26" Name="toolBar1" Width="Auto" >
+                    <Button Click="Button_Click">Start</Button>
+                    <Button IsEnabled="False">Screencap</Button>
+            </ToolBar>
+        </ToolBarPanel>
+        <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+            <StatusBarItem Name ="status_name" Content="测试包名:" Width="Auto" />
+            <StatusBarItem Name ="status_proname" Width="Auto" />
+            <StatusBarItem Name ="status_datausage" Content="流量:" Width="Auto" />
+            <StatusBarItem Name ="status_datausage_thre" Content="阈值:" Width="Auto" />
+            <StatusBarItem Name ="status_cpu" Content="cpu:" Width="Auto" />
+            <StatusBarItem Name ="status_cpu_thre" Content="阈值:" Width="Auto" />
+            <StatusBarItem Name ="status_mem" Content="内存:" Width="Auto" />
+            <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="Auto"/>
+            <StatusBarItem />
+        </StatusBar>
+        <Grid DockPanel.Dock="Left">
+        <TextBox Height="25" Name="textBox1" Width="211"  VerticalAlignment="Top" TextChanged="textBox1_TextChanged"/>
+        <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" />
+            </Grid>
+                <UniformGrid  Columns="2" Rows="2">
+            <Grid>
+                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top">
+                    <d3:ChartPlotter.HorizontalAxis>
+                        <d3:HorizontalIntegerAxis></d3:HorizontalIntegerAxis>
+                    </d3:ChartPlotter.HorizontalAxis>
+                    <d3:ChartPlotter.VerticalAxis>
+                        <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
+                    </d3:ChartPlotter.VerticalAxis>
+                    <d3:HorizontalAxisTitle Content="流量消耗(KB)" Name="chart_datausageTitle" VerticalAlignment="Top">
+       
+                    </d3:HorizontalAxisTitle>
+                </d3:ChartPlotter>
+            </Grid>
+            <Grid>
+                <d3:ChartPlotter Name="chart_cpu" Margin="0,0,11,0">
+                    <d3:ChartPlotter.HorizontalAxis>
+                        <d3:HorizontalIntegerAxis></d3:HorizontalIntegerAxis>
+                    </d3:ChartPlotter.HorizontalAxis>
+                    <d3:ChartPlotter.VerticalAxis>
+                        <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
+                    </d3:ChartPlotter.VerticalAxis>
+                    <d3:HorizontalAxisTitle Content="CPU使用率(%)" Name="chart_cpuTitle" VerticalAlignment="Top">
+                    </d3:HorizontalAxisTitle>
+                </d3:ChartPlotter>
+            </Grid>
+            <Grid>
+                <d3:ChartPlotter Name="chart_mem" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto">
+                    <d3:ChartPlotter.HorizontalAxis>
+                        <d3:HorizontalIntegerAxis></d3:HorizontalIntegerAxis>
+                    </d3:ChartPlotter.HorizontalAxis>
+                    <d3:ChartPlotter.VerticalAxis>
+                        <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
+                    </d3:ChartPlotter.VerticalAxis>
+                    <d3:HorizontalAxisTitle Content="内存使用(KB)" Name="chart_memTitle" VerticalAlignment="Top">
+                    </d3:HorizontalAxisTitle>
+                </d3:ChartPlotter>
+            </Grid>
+            <Grid>
+                <d3:ChartPlotter Name="chart_kpi" Margin="0,0,11,0">
+                    <d3:ChartPlotter.HorizontalAxis>
+                        <d3:HorizontalIntegerAxis></d3:HorizontalIntegerAxis>
+                    </d3:ChartPlotter.HorizontalAxis>
+                    <d3:ChartPlotter.VerticalAxis>
+                        <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
+                    </d3:ChartPlotter.VerticalAxis>
+                    <d3:HorizontalAxisTitle Content="预留" Name="chart_kpiTitle" VerticalAlignment="Top">
+                    </d3:HorizontalAxisTitle>
+                </d3:ChartPlotter>
+            </Grid>
+        </UniformGrid >
+        <Label Height="28" Name="label1" Width="120">Label</Label>
+        <Grid Height="50" Name="grid1" Width="206" />
+        
+    </DockPanel>
+</Window>

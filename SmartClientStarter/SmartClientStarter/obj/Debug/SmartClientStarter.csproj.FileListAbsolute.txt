@@ -24,3 +24,7 @@ E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChi
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.g.resources
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.exe
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.pdb
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\SmartChinchillaStarter.exe.config
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\SmartChinchillaStarter.exe
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\SmartChinchillaStarter.pdb
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.exe.config
