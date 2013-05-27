@@ -1,0 +1,26 @@
+C:\smartclientoutput\SmartClientStarter.exe
+C:\smartclientoutput\SmartClientStarter.pdb
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\Window1.baml
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\Window1.g.cs
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\App.g.cs
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter_MarkupCompile.cache
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.g.resources
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.Properties.Resources.resources
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.csproj.GenerateResource.Cache
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.exe
+C:\Documents and Settings\crmoo1\My Documents\Visual Studio 2008\Projects\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.pdb
+C:\smartclientoutput\SmartClientStarter.exe.config
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\ResolveAssemblyReference.cache
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\Window1.baml
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\Window1.g.cs
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\App.g.cs
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.Properties.Resources.resources
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.csproj.GenerateResource.Cache
+E:\smartclientoutput\SmartChinchillaStarter.exe.config
+E:\smartclientoutput\SmartChinchillaStarter.exe
+E:\smartclientoutput\SmartChinchillaStarter.pdb
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter_MarkupCompile.cache
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.g.resources
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.exe
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.pdb

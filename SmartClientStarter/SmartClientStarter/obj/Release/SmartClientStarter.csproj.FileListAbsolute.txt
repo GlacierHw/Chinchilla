@@ -1,0 +1,13 @@
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartClientStarter.exe.config
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartClientStarter.exe
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartClientStarter.pdb
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\ResolveAssemblyReference.cache
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\Window1.baml
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\Window1.g.cs
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\App.g.cs
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter_MarkupCompile.cache
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.g.resources
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.Properties.Resources.resources
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.csproj.GenerateResource.Cache
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.exe
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.pdb
