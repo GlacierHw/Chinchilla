@@ -18,6 +18,7 @@ using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
+using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace Chinchilla
 {
@@ -26,10 +27,13 @@ namespace Chinchilla
         public String charttype = "屏幕变化率";
         private Process proc = null;
         private Thread getDiffThread;
+        private List<VerticalLine> vlines = new List<VerticalLine>();
+        public delegate void DeleFunc(double value);
 
         public KpiChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist)
         {
+
         }
 
         public override void asyncProcData()
@@ -48,6 +52,7 @@ namespace Chinchilla
 
             ThreadStart ts = new ThreadStart(getScreenDiff);
             getDiffThread = new Thread(ts);
+            getDiffThread.SetApartmentState(ApartmentState.STA);
             getDiffThread.Start();
         }
 
@@ -87,7 +92,25 @@ namespace Chinchilla
                         Match diffM = cpuReg.Match(line);
                         double timex = Convert.ToDouble(diffM.Groups[1].ToString()) / 1000;
                         double diffy = Math.Abs(Convert.ToDouble(diffM.Groups[2].ToString()));
-                        this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy));
+                        int pointcount = this.datalist["屏幕变化率"].Collection.Count;
+                        if (pointcount > 10)
+                        {
+                            double lastvaluey = this.datalist["屏幕变化率"].Collection[pointcount - 1].Y;
+                            double lastvaluex = this.datalist["屏幕变化率"].Collection[pointcount - 1].X;
+                            if (lastvaluey > 0 && diffy == 0)
+                            {
+                                Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                     new DeleFunc(addVerticalLine), timex);
+                                //this.addVerticalLine(diffy);
+                            }
+                            else if (lastvaluey == 0 && diffy > 0)
+                            {
+                                Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                     new DeleFunc(addVerticalLine), lastvaluex);
+                                //this.addVerticalLine(lastvalue);
+                            }
+                        }
+                        this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 99 ? 99:diffy));
                     }
                 }
 
@@ -120,6 +143,15 @@ namespace Chinchilla
                 getDiffThread.Abort();
 
             base.dispose();
+        }
+
+        private void addVerticalLine(double value)
+        {
+            VerticalLine vl = new VerticalLine();
+            vl.Value = value;
+            vl.Stroke = new SolidColorBrush(Colors.IndianRed);
+            vl.StrokeThickness = 1;
+            this.chart.Children.Add(vl);
         }
     }
 }

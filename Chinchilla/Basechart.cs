@@ -129,11 +129,11 @@ namespace Chinchilla {
         }
 
         private void chart_MouseLeave(object sender, MouseEventArgs e) {
-            chart.LegendVisible = false;
+            chart.LegendVisibility = Visibility.Hidden;
         }
 
         private void chart_MouseMove(object sender, MouseEventArgs e) {
-            chart.LegendVisible = true;
+            chart.LegendVisibility = Visibility.Visible;
         }
 
         public virtual void dispose()
