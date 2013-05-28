@@ -22,13 +22,13 @@ using System.Timers;
 
 
 namespace Chinchilla {
-    class Basechart {
+    class Basechart  {
         private String charttype = "";
-        private ChartPlotter chart;
+        protected ChartPlotter chart;
         private DispatcherTimer timerSine;
         protected double t = 0;
         private bool testlock = false;
-        private Dispatcher disp;
+        protected Dispatcher disp;
         private String package;
         private String uid = "";
         protected Dictionary<string, string> pkglist = new Dictionary<string, string>();
@@ -70,12 +70,12 @@ namespace Chinchilla {
             newThread.Start();
         }
 
-        public void updatechart(Dictionary<string, string> packagelist) {
+        public virtual void updatechart(Dictionary<string, string> packagelist) {
             //pkglist.Clear();
             pkglist = new Dictionary<string,string>(packagelist);
             initChart();
         }
-        public void asyncProcData() {
+        public virtual void asyncProcData() {
          
             aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(timerSine_Tick);
@@ -134,6 +134,12 @@ namespace Chinchilla {
 
         private void chart_MouseMove(object sender, MouseEventArgs e) {
             chart.LegendVisible = true;
+        }
+
+        public virtual void dispose()
+        {
+            if (newThread != null)
+                newThread.Abort();
         }
     }
 }

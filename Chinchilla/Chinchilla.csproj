@@ -86,6 +86,7 @@
     <Compile Include="DatausageChart.cs" />
     <Compile Include="DeviceInfoHelper.cs" />
     <Compile Include="Executecmd.cs" />
+    <Compile Include="KpiChart.cs" />
     <Compile Include="MemChart.cs" />
     <Compile Include="ThresholdSetting.xaml.cs">
       <DependentUpon>ThresholdSetting.xaml</DependentUpon>
@@ -140,6 +141,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="save" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

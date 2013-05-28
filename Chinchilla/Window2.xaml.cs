@@ -46,6 +46,7 @@ namespace Chinchilla
             testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
+            testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
         }
 
         void initTextBox() {
@@ -188,6 +189,14 @@ namespace Chinchilla
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e) {
             MessageBox.Show("1.右键点击图标可保存图片及查看更多操作，滚轮可放大/缩小图片\n 2.目前阈值报警功能仅支持监测一个应用时使用\n3.beta版功能较少，有任何需求请联系邓呈亮&&何韡", "提示");
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            foreach (Basechart chart in testchart)
+            {
+                chart.dispose();
+            }
         }
 
     }
