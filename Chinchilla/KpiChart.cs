@@ -19,6 +19,9 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
 using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using Microsoft.Research.DynamicDataDisplay.PointMarkers;
 
 namespace Chinchilla
 {
@@ -29,6 +32,7 @@ namespace Chinchilla
         private Thread getDiffThread;
         private List<VerticalLine> vlines = new List<VerticalLine>();
         public delegate void DeleFunc(double value);
+        ViewportRectPanel vp = new ViewportRectPanel();
 
         public KpiChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist)
@@ -45,9 +49,14 @@ namespace Chinchilla
         {
             pkglist = new Dictionary<string, string>();
             clearLines();
+            //Rect rec = (t-20>0?t-20:0,t-20>0?t+10:30,t,chart.Viewport.Visible.YMax);
             datalist.Clear();
             listgraph.Clear();
-            datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
+
+            ObservableDataSource<Point> ep = new ObservableDataSource<Point>();
+            ep.SetXMapping(s => s.X);
+
+            datalist.Add("屏幕变化率", ep);
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
             ThreadStart ts = new ThreadStart(getScreenDiff);
@@ -84,11 +93,18 @@ namespace Chinchilla
                 //result = proc.StandardOutput.ReadToEnd();
                 string line;
                 Regex cpuReg = new Regex(@"time:\s*(\d*)\s*\S*diff:\s*-*(\d*)\s*");
+                long linecount = 0;
 
                 while ((line = proc.StandardOutput.ReadLine()) != null)
-                {
+                {                    
                     if (line.Contains("time"))
                     {
+                        if (linecount == 0)
+                        {
+                            linecount++;
+                            continue;
+                        }
+
                         Match diffM = cpuReg.Match(line);
                         double timex = Convert.ToDouble(diffM.Groups[1].ToString()) / 1000;
                         double diffy = Math.Abs(Convert.ToDouble(diffM.Groups[2].ToString()));
@@ -110,7 +126,7 @@ namespace Chinchilla
                                 //this.addVerticalLine(lastvalue);
                             }
                         }
-                        this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 99 ? 99:diffy));
+                        this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66:diffy));
                     }
                 }
 
@@ -150,7 +166,8 @@ namespace Chinchilla
             VerticalLine vl = new VerticalLine();
             vl.Value = value;
             vl.Stroke = new SolidColorBrush(Colors.IndianRed);
-            vl.StrokeThickness = 1;
+            vl.StrokeThickness = 2;
+            vl.ToolTip = value.ToString();
             this.chart.Children.Add(vl);
         }
     }

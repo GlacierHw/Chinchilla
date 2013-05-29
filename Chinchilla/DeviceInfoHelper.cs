@@ -49,7 +49,14 @@ namespace Chinchilla
             {
                 if (m.Groups.Count > 2 && Convert.ToInt32(m.Groups[2].ToString()) >10000)
                 {
-                    pkginfo.Add(m.Groups[1].ToString(),m.Groups[2].ToString());
+                    try
+                    {
+                        pkginfo.Add(m.Groups[1].ToString(), m.Groups[2].ToString());
+                    }
+                    catch (Exception)
+                    {
+                        //eat exception
+                    }
                 }
             }
             /*
