@@ -51,3 +51,4 @@ C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\Chinchilla.g
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\Chinchilla.Properties.Resources.resources
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\ResGen.read.1.tlog
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\ResGen.write.1.tlog
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\bin\Debug\save

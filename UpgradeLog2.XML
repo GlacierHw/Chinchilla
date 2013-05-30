@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Chinchilla">
+</Property><Property Name="Solution File" Value="C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla.sln">
+</Property><Property Name="Date" Value="2013年5月29日">
+</Property><Property Name="Time" Value="22:39:28">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\SmartClientStarter.csproj" Description="Project file successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\SmartClientStarter.csproj">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\SmartClientStarter.csproj.user" Description="Project user file successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\SmartClientStarter.csproj.user">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\App.xaml.cs" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\App.xaml.cs">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Window1.xaml.cs" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Window1.xaml.cs">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Properties\Resources.Designer.cs" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Properties\Settings.Designer.cs" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\app.config" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\app.config">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Properties\Settings.settings" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Properties\Resources.resx" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\App.xaml" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\App.xaml">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\Window1.xaml" Description="File successfully backed up as C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Backup1\Window1.xaml">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\SmartClientStarter.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\SmartClientStarter.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SmartClientStarter" Source="SmartClientStarter\SmartClientStarter\SmartClientStarter.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

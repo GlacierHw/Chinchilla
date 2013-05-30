@@ -28,3 +28,17 @@ E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\SmartChinchill
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\SmartChinchillaStarter.exe
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\SmartChinchillaStarter.pdb
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.exe.config
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.exe.config
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.exe
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.pdb
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\Window1.baml
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\Window1.g.cs
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\App.g.cs
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter_MarkupCompile.cache
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.g.resources
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartClientStarter.Properties.Resources.resources
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\ResGen.read.1.tlog
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\ResGen.write.1.tlog
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.exe
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.pdb

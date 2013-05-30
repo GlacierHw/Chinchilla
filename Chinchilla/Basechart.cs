@@ -19,6 +19,7 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
 using System.Timers;
+using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
 
 
 namespace Chinchilla {
@@ -39,6 +40,7 @@ namespace Chinchilla {
         protected System.Timers.Timer aTimer;
         protected List<Color> colorpool = new List<Color>();
         private int linenum = 0;
+        protected FollowWidthRestriction msr = new FollowWidthRestriction();
         protected Thread newThread;
         public double CurrentData
         {
@@ -58,6 +60,8 @@ namespace Chinchilla {
             colorpool.Add(Colors.Pink);
             disp = p;
             chart = newchart;
+            msr.Width = 300;
+            this.chart.Viewport.Restrictions.Add(msr);
             chart.FitToView();
             chart.Legend.LegendLeft = 10.0;
             chart.MouseMove += new MouseEventHandler(chart_MouseMove);
