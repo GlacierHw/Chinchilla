@@ -76,8 +76,10 @@ namespace Chinchilla {
 
         public virtual void updatechart(Dictionary<string, string> packagelist) {
             //pkglist.Clear();
+            aTimer.Stop();
             pkglist = new Dictionary<string,string>(packagelist);
             initChart();
+            aTimer.Start();
         }
         public virtual void asyncProcData() {
          
@@ -91,7 +93,6 @@ namespace Chinchilla {
         }
 
         public void initChart() {
-            aTimer.Stop();
             clearLines();
             datalist.Clear();
             listgraph.Clear();
@@ -101,7 +102,6 @@ namespace Chinchilla {
                 datalist.Add(pkg.Key, new ObservableDataSource<Point>());
                 listgraph.Add(chart.AddLineGraph(datalist[pkg.Key], colorpool[linenum++], 2, pkg.Key));//Color.FromRgb(72, 118, 255)
             }
-            aTimer.Start();
         }
 
         private void timerSine_Tick(object sender, EventArgs e)
