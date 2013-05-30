@@ -4,15 +4,20 @@
 winexe
 C#
 .cs
-E:\workspace\Chinchilla\Chinchilla\obj\Release\
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Release\
 Chinchilla
 none
 false
 TRACE
-E:\workspace\Chinchilla\Chinchilla\App.xaml
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\App.xaml
 31992537640
 
+<<<<<<< HEAD
 151868810864
 111878286180
+=======
+14-1701046130
+11-68333395
+>>>>>>> 2d255bb85f170b45223455cc45736699ae04049f
 ThresholdSetting.xaml;Window1.xaml;Window2.xaml;
 
