@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.IO;
 using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
@@ -53,10 +54,8 @@ namespace Chinchilla
             datalist.Clear();
             listgraph.Clear();
 
-            ObservableDataSource<Point> ep = new ObservableDataSource<Point>();
-            ep.SetXMapping(s => s.X);
-
-            datalist.Add("屏幕变化率", ep);
+            this.msr.Width = 60;
+            datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
             ThreadStart ts = new ThreadStart(getScreenDiff);
@@ -127,6 +126,14 @@ namespace Chinchilla
                             }
                         }
                         this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66:diffy));
+                        /*
+                        Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                     (Action)(() =>
+                                                     { 
+                                                         //this.chart.Viewport.Visible = new Rect(timex-10,-10,11,100); 
+                                                         //this.chart.Viewport.Visible.Width = 10; 
+                                                     }));
+                         */
                     }
                 }
 
