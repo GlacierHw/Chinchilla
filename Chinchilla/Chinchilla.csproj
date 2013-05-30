@@ -149,6 +149,9 @@
     <None Include="save">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="version.cfg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
