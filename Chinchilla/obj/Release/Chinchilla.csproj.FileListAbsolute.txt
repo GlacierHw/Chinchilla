@@ -18,3 +18,4 @@ C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Release\ResGen.rea
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Release\ResGen.write.1.tlog
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Release\Chinchilla.exe
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Release\Chinchilla.pdb
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\bin\Release\version.cfg
