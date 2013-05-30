@@ -25,6 +25,7 @@ using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
 namespace Chinchilla {
     class Basechart  {
         private String charttype = "";
+        protected bool running = true;
         protected ChartPlotter chart;
         private DispatcherTimer timerSine;
         protected double t = 0;
@@ -74,6 +75,14 @@ namespace Chinchilla {
             newThread.Start();
         }
 
+        public virtual void restart() {
+            running = true;
+        }
+
+        public virtual void stop() {
+            running = false;
+        }
+
         public virtual void updatechart(Dictionary<string, string> packagelist) {
             //pkglist.Clear();
             aTimer.Stop();
@@ -104,8 +113,10 @@ namespace Chinchilla {
             }
         }
 
-        private void timerSine_Tick(object sender, EventArgs e)
-        {
+        private void timerSine_Tick(object sender, EventArgs e) {
+            if (!running) {
+                return;
+            }
             while(testlock) {
                 Thread.Sleep(50);
             }
@@ -123,6 +134,7 @@ namespace Chinchilla {
 
         public virtual double getData(String package)
         {
+            
             Random rd = new Random();
             return (double)rd.Next(100);
         }

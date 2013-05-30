@@ -45,16 +45,17 @@ namespace Chinchilla
             Thread newThread = new Thread(ts);
             newThread.Start();
             updateStausBar();
+            
             testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
-            testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
+            testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));      
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
         }
 
         void initTextBox() {
             //this.textBox1.DataContextChanged += new DependencyPropertyChangedEventHandler(textBox1_DataContextChanged);
         }
-
+        
         void textBox1_TextChanged(object sender, TextChangedEventArgs e) {
             this.listView1.Items.Clear();
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
@@ -201,5 +202,31 @@ namespace Chinchilla
             }
         }
 
+        private void checkBox_Checked(object sender, RoutedEventArgs e) {
+            if (((CheckBox)sender).IsChecked == true) {
+                if (sender.ToString().Contains("流量")) {
+                    testchart[0].restart();
+                } else if (sender.ToString().Contains("内存")) {
+                    testchart[1].restart();
+                } else if (sender.ToString().Contains("CPU")) {
+                    testchart[2].restart();
+                } else if (sender.ToString().Contains("KPI")) {
+                    ((KpiChart)testchart[3]).restart();
+                }else{
+
+                }
+            } else if (((CheckBox)sender).IsChecked == false) {
+                if (sender.ToString().Contains("流量")) {
+                    testchart[0].stop();
+                } else if (sender.ToString().Contains("内存")) {
+                    testchart[1].stop();
+                } else if (sender.ToString().Contains("CPU")) {
+                    testchart[2].stop();
+                } else if (sender.ToString().Contains("KPI")) {
+                    ((KpiChart)testchart[3]).stop();
+                } else {
+                }
+            }
+        }
     }
 }

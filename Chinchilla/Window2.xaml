@@ -9,11 +9,16 @@
             <MenuItem Header="Edit"  Visibility="Visible" IsEnabled="False" />
             <MenuItem Header="Setting" Visibility="Visible" IsEnabled="True" Click="MenuItem_Click" />
             <MenuItem Header="Help" Click="MenuItem_Click_1" />
+            
         </Menu>
         <ToolBarPanel Height="26" Name="toolBarPanel1" Width="Auto" VerticalAlignment="Top" DockPanel.Dock="Top">
             <ToolBar Height="26" Name="toolBar1" Width="Auto" >
                     <Button Click="Button_Click">Start</Button>
                     <Button IsEnabled="False">Screencap</Button>
+                <CheckBox Height="26" Name="checkBox1" Width="100" IsChecked="True" Margin="60,0,0,0" Click="checkBox_Checked">流量监控</CheckBox>
+                <CheckBox Height="26" Name="checkBox2" Width="100" IsChecked="True" Click="checkBox_Checked">内存监控</CheckBox>
+                <CheckBox Height="26" Name="checkBox3" Width="100" IsChecked="True" Click="checkBox_Checked">CPU监控</CheckBox>
+                <CheckBox Height="26" Name="checkBox4" Width="100" IsChecked="False" Click="checkBox_Checked">KPI监控</CheckBox>
             </ToolBar>
         </ToolBarPanel>
         <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">

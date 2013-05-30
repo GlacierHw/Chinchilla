@@ -30,6 +30,9 @@ namespace Chinchilla
     {
         public String charttype = "屏幕变化率";
         private Process proc = null;
+        private ThreadStart ts;
+        private bool runable = false;
+        private bool isRunning = false;
         private Thread getDiffThread;
         private List<VerticalLine> vlines = new List<VerticalLine>();
         public delegate void DeleFunc(double value);
@@ -66,6 +69,7 @@ namespace Chinchilla
 
         public override void updatechart(Dictionary<string, string> packagelist)
         {
+            isRunning = true;
             pkglist = new Dictionary<string, string>();
             clearLines();
             //Rect rec = (t-20>0?t-20:0,t-20>0?t+10:30,t,chart.Viewport.Visible.YMax);
@@ -78,9 +82,11 @@ namespace Chinchilla
             datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
-            ThreadStart ts = new ThreadStart(getScreenDiff);
-            if (getDiffThread == null)
-            {
+            ts = new ThreadStart(getScreenDiff);   
+            if (getDiffThread == null) {
+                if (!runable) {
+                    return; 
+                }
                 getDiffThread = new Thread(ts);
                 getDiffThread.SetApartmentState(ApartmentState.STA);
                 getDiffThread.Start();
@@ -96,8 +102,29 @@ namespace Chinchilla
             }
         }
 
+        public override void stop() {
+            getDiffThread.Abort();
+            if (proc != null)
+                proc.Kill();
+            getDiffThread = new Thread(ts);
+            getDiffThread.SetApartmentState(ApartmentState.STA);
+            getDiffThread.Start();
+        }
+
+       public override void restart() {
+            runable = true;
+            if (!isRunning) {
+                return;
+            }
+
+            getDiffThread = new Thread(ts);
+            getDiffThread.SetApartmentState(ApartmentState.STA);
+            getDiffThread.Start();
+        }
+
         private void getScreenDiff()
         {
+            
             try
             {
                 //if (proc != null)
@@ -126,8 +153,8 @@ namespace Chinchilla
                 Regex cpuReg = new Regex(@"time:\s*(\d*)\s*\S*diff:\s*-*(\d*)\s*");
                 long linecount = 0;
 
-                while ((line = proc.StandardOutput.ReadLine()) != null)
-                {                    
+                while ((line = proc.StandardOutput.ReadLine()) != null) {
+                                      
                     if (line.Contains("time"))
                     {
                         if (linecount == 0)
