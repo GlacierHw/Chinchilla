@@ -11,3 +11,17 @@ E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartC
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.g.resources
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.exe
 E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.pdb
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartChinchillaStarter.exe.config
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartChinchillaStarter.exe
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartChinchillaStarter.pdb
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\ResolveAssemblyReference.cache
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\Window1.baml
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\Window1.g.cs
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\App.g.cs
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter_MarkupCompile.cache
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.g.resources
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.Properties.Resources.resources
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\ResGen.read.1.tlog
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\ResGen.write.1.tlog
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.exe
+C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.pdb

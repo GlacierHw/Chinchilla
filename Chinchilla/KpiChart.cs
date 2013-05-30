@@ -46,6 +46,24 @@ namespace Chinchilla
             return;
         }
 
+        private void clearVerticalLine(ChartPlotter chart)
+        {
+            List<VerticalLine> vlines = new List<VerticalLine>();
+            foreach (var child in chart.Children)
+            {
+                if (child is VerticalLine)
+                {
+                    vlines.Add(child as VerticalLine);
+                }
+            }
+
+            foreach (var child in vlines)
+            {
+                chart.Children.Remove(child);
+            }
+
+        }
+
         public override void updatechart(Dictionary<string, string> packagelist)
         {
             pkglist = new Dictionary<string, string>();
@@ -53,6 +71,8 @@ namespace Chinchilla
             //Rect rec = (t-20>0?t-20:0,t-20>0?t+10:30,t,chart.Viewport.Visible.YMax);
             datalist.Clear();
             listgraph.Clear();
+
+            clearVerticalLine(chart);
 
             this.msr.Width = 30;
             datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
