@@ -94,7 +94,7 @@ namespace Chinchilla
             else
             {
                 getDiffThread.Abort();
-                if (proc != null)
+                if (!proc.HasExited)
                     proc.Kill();
                 getDiffThread = new Thread(ts);
                 getDiffThread.SetApartmentState(ApartmentState.STA);
@@ -103,12 +103,15 @@ namespace Chinchilla
         }
 
         public override void stop() {
-            getDiffThread.Abort();
-            if (proc != null)
+            if (!isRunning)
+                return;
+            if (getDiffThread !=null)
+                getDiffThread.Abort();
+            if (proc!=null && !proc.HasExited)
                 proc.Kill();
-            getDiffThread = new Thread(ts);
-            getDiffThread.SetApartmentState(ApartmentState.STA);
-            getDiffThread.Start();
+            //getDiffThread = new Thread(ts);
+            //getDiffThread.SetApartmentState(ApartmentState.STA);
+            //getDiffThread.Start();
         }
 
        public override void restart() {
@@ -117,6 +120,8 @@ namespace Chinchilla
                 return;
             }
 
+            if (proc!=null && !proc.HasExited)
+                proc.Kill();
             getDiffThread = new Thread(ts);
             getDiffThread.SetApartmentState(ApartmentState.STA);
             getDiffThread.Start();
