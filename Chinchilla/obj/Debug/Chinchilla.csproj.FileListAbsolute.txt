@@ -52,3 +52,5 @@ C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\Chinchilla.P
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\ResGen.read.1.tlog
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\obj\Debug\ResGen.write.1.tlog
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\Chinchilla\bin\Debug\save
+E:\workspace\Chinchilla\Chinchilla\bin\Debug\save
+E:\workspace\Chinchilla\Chinchilla\bin\Debug\ICSharpCode.SharpZipLib.dll

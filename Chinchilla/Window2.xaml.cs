@@ -37,6 +37,8 @@ namespace Chinchilla
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            UpdateManager um = new UpdateManager(this);
+            um.autoupdate();
             initTextBox();
             //updateListview();
             ThreadStart ts = new ThreadStart(updateListview);

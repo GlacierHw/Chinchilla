@@ -28,6 +28,9 @@ namespace SmartClientStarter
             //fdl = new FtpDownLoader();
         }
 
+        
+
+
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             WebClient dc = new WebClient();

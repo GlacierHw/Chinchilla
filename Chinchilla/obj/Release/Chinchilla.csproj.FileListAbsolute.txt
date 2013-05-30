@@ -15,3 +15,5 @@ E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.Properties.Resources.r
 E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.csproj.GenerateResource.Cache
 E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.exe
 E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.pdb
+E:\workspace\Chinchilla\Chinchilla\bin\Release\save
+E:\workspace\Chinchilla\Chinchilla\bin\Release\ICSharpCode.SharpZipLib.dll

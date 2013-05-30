@@ -42,3 +42,5 @@ C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientSta
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\ResGen.write.1.tlog
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.exe
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Debug\SmartChinchillaStarter.pdb
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.exe
+E:\workspace\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Debug\SmartChinchillaStarter.pdb
