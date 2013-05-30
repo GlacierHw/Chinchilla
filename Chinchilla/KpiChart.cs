@@ -54,7 +54,7 @@ namespace Chinchilla
             datalist.Clear();
             listgraph.Clear();
 
-            this.msr.Width = 60;
+            this.msr.Width = 30;
             datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
