@@ -46,6 +46,24 @@ namespace Chinchilla
             return;
         }
 
+        private void clearVerticalLine(ChartPlotter chart)
+        {
+            List<VerticalLine> vlines = new List<VerticalLine>();
+            foreach (var child in chart.Children)
+            {
+                if (child is VerticalLine)
+                {
+                    vlines.Add(child as VerticalLine);
+                }
+            }
+
+            foreach (var child in vlines)
+            {
+                chart.Children.Remove(child);
+            }
+
+        }
+
         public override void updatechart(Dictionary<string, string> packagelist)
         {
             pkglist = new Dictionary<string, string>();
@@ -54,22 +72,36 @@ namespace Chinchilla
             datalist.Clear();
             listgraph.Clear();
 
+            clearVerticalLine(chart);
+
             this.msr.Width = 30;
             datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
             ThreadStart ts = new ThreadStart(getScreenDiff);
-            getDiffThread = new Thread(ts);
-            getDiffThread.SetApartmentState(ApartmentState.STA);
-            getDiffThread.Start();
+            if (getDiffThread == null)
+            {
+                getDiffThread = new Thread(ts);
+                getDiffThread.SetApartmentState(ApartmentState.STA);
+                getDiffThread.Start();
+            }
+            else
+            {
+                getDiffThread.Abort();
+                if (proc != null)
+                    proc.Kill();
+                getDiffThread = new Thread(ts);
+                getDiffThread.SetApartmentState(ApartmentState.STA);
+                getDiffThread.Start();
+            }
         }
 
         private void getScreenDiff()
         {
             try
             {
-                if (proc != null)
-                    proc.Kill();
+                //if (proc != null)
+                //    proc.Kill();
 
                 Executecmd.ExecuteCommandSync("adb root",0);
                 Executecmd.ExecuteCommandSync("adb remount",0);

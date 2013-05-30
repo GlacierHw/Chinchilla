@@ -76,8 +76,10 @@ namespace Chinchilla {
 
         public virtual void updatechart(Dictionary<string, string> packagelist) {
             //pkglist.Clear();
+            aTimer.Stop();
             pkglist = new Dictionary<string,string>(packagelist);
             initChart();
+            aTimer.Start();
         }
         public virtual void asyncProcData() {
          
