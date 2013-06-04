@@ -36,7 +36,8 @@ namespace Chinchilla
         private Thread getDiffThread;
         private List<VerticalLine> vlines = new List<VerticalLine>();
         public delegate void DeleFunc(double value);
-        ViewportRectPanel vp = new ViewportRectPanel();
+        public delegate void DeleRect(double value,double width);
+        ObservableDataSource<Point> markerPoints = new ObservableDataSource<Point>();
 
         public KpiChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist)
@@ -76,10 +77,13 @@ namespace Chinchilla
             datalist.Clear();
             listgraph.Clear();
 
-            clearVerticalLine(chart);
-
             this.msr.Width = 30;
             datalist.Add("屏幕变化率", new ObservableDataSource<Point>());
+
+            MarkerPointsGraph mpg = new MarkerPointsGraph(markerPoints);
+            XValueTextMarker ctm = new XValueTextMarker(this.chart.Viewport);
+            mpg.Marker = ctm;
+            this.chart.Children.Add(mpg);
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
             ts = new ThreadStart(getScreenDiff);   
@@ -157,6 +161,11 @@ namespace Chinchilla
                 string line;
                 Regex cpuReg = new Regex(@"time:\s*(\d*)\s*\S*diff:\s*-*(\d*)\s*");
                 long linecount = 0;
+                
+                int startIndex = 0;
+                int endIndex = 0;
+                int safeDistance = 20;
+                int safeDistanceCount = 0;
 
                 while ((line = proc.StandardOutput.ReadLine()) != null) {
                                       
@@ -172,32 +181,57 @@ namespace Chinchilla
                         double timex = Convert.ToDouble(diffM.Groups[1].ToString()) / 1000;
                         double diffy = Math.Abs(Convert.ToDouble(diffM.Groups[2].ToString()));
                         int pointcount = this.datalist["屏幕变化率"].Collection.Count;
+
                         if (pointcount > 10)
                         {
                             double lastvaluey = this.datalist["屏幕变化率"].Collection[pointcount - 1].Y;
                             double lastvaluex = this.datalist["屏幕变化率"].Collection[pointcount - 1].X;
                             if (lastvaluey > 0 && diffy == 0)
                             {
-                                Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
-                                                     new DeleFunc(addVerticalLine), timex);
-                                //this.addVerticalLine(diffy);
+                                if (endIndex == 0)
+                                {
+                                    endIndex = pointcount;
+                                }
+                                safeDistanceCount = 0;
                             }
                             else if (lastvaluey == 0 && diffy > 0)
                             {
-                                Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
-                                                     new DeleFunc(addVerticalLine), lastvaluex);
-                                //this.addVerticalLine(lastvalue);
+                                if (startIndex == 0)
+                                {
+                                    startIndex = pointcount - 1;
+                                }
+                                else if (endIndex != 0 && (pointcount - 1 - endIndex) < safeDistance)
+                                {
+                                    endIndex = 0;
+                                }
+                                safeDistanceCount = 0;
+                            }
+                            else
+                            {
+                                if (startIndex != 0 && endIndex != 0)
+                                {
+                                    safeDistanceCount++;
+                                }
+
+                                if (safeDistanceCount >= safeDistance)
+                                {
+                                    double endx = this.datalist["屏幕变化率"].Collection[endIndex].X;
+                                    double startx = this.datalist["屏幕变化率"].Collection[startIndex].X;
+                                    Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                         new DeleFunc(addVerticalLine), endx);
+                                    Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                         new DeleFunc(addVerticalLine), startx);
+                                    this.markerPoints.AppendAsync(disp, new Point(this.datalist["屏幕变化率"].Collection[startIndex].X, endx - startx));
+                                    Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
+                                                         new DeleRect(addRect), endx, endx - startx);
+
+                                    startIndex = 0;
+                                    endIndex = 0;
+                                    safeDistanceCount = 0;
+                                }
                             }
                         }
                         this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66:diffy));
-                        /*
-                        Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
-                                                     (Action)(() =>
-                                                     { 
-                                                         //this.chart.Viewport.Visible = new Rect(timex-10,-10,11,100); 
-                                                         //this.chart.Viewport.Visible.Width = 10; 
-                                                     }));
-                         */
                     }
                 }
 
@@ -236,10 +270,19 @@ namespace Chinchilla
         {
             VerticalLine vl = new VerticalLine();
             vl.Value = value;
-            vl.Stroke = new SolidColorBrush(Colors.IndianRed);
-            vl.StrokeThickness = 2;
+            vl.Stroke = new SolidColorBrush(Colors.Green);
+            vl.StrokeThickness = 1;
             vl.ToolTip = value.ToString();
             this.chart.Children.Add(vl);
+        }
+
+        private void addRect(double value,double width)
+        {
+            RectangleHighlight rh = new RectangleHighlight();
+            rh.Bounds = new Rect(new Point(value-width, 0), new Point(value, 0));
+            rh.Stroke = new SolidColorBrush(Colors.OrangeRed);
+            rh.StrokeThickness = 2;
+            this.chart.Children.Add(rh);
         }
     }
 }
