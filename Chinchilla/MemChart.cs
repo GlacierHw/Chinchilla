@@ -23,6 +23,16 @@ namespace Chinchilla
     class MemChart : Basechart
     {
         public String charttype = "内存";
+        private double avgData;
+
+        public double AvgData
+        {
+            get
+            {
+                return this.avgData;
+            }
+        }
+
         public override double getData(string package)
         {
             double memdata = 0;
@@ -38,6 +48,20 @@ namespace Chinchilla
             }
 
             this.currentData = memdata;
+
+            if (this.datalist.Count != 1)
+            {
+                this.avgData = -1;
+            }
+            else
+            {
+                foreach (var value in this.datalist.Values)
+                {
+                    int count = value.Collection.Count;
+                    this.avgData = (this.avgData * count + memdata) / (count + 1);
+                }
+            }
+
             return memdata;
         }
 

@@ -23,6 +23,16 @@ namespace Chinchilla
     class CpuChart : Basechart
     {
         public String charttype = "cpu";
+        private double avgData;
+
+        public double AvgData
+        {
+            get
+            {
+                return this.avgData;
+            }
+        }
+
         public override double getData(string package)
         {
             double cpudata = 0;
@@ -37,6 +47,20 @@ namespace Chinchilla
             }
 
             this.currentData = cpudata;
+
+            if (this.datalist.Count != 1)
+            {
+                this.avgData = -1;
+            }
+            else
+            {
+                foreach (var value in this.datalist.Values)
+                {
+                    int count = value.Collection.Count;
+                    this.avgData = (this.avgData * count + cpudata) / (count + 1);
+                }
+            }
+
             return cpudata;
         }
 

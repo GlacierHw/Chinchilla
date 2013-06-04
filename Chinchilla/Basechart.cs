@@ -64,7 +64,7 @@ namespace Chinchilla {
             msr.Width = 300;
             this.chart.Viewport.Restrictions.Add(msr);
             chart.FitToView();
-            chart.Legend.LegendLeft = 10.0;
+            //chart.Legend.LegendLeft = 10.0;
             chart.MouseMove += new MouseEventHandler(chart_MouseMove);
             chart.MouseLeave += new MouseEventHandler(chart_MouseLeave);
             //chart.Legend.Visibility = auto;

@@ -45,6 +45,7 @@ namespace Chinchilla
             Thread newThread = new Thread(ts);
             newThread.Start();
             updateStausBar();
+            updateAvgLabel();
            
             testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
@@ -176,6 +177,28 @@ namespace Chinchilla
                 }
             }
 
+        }
+
+        private void updateAvgLabel()
+        {
+            DispatcherTimer timerSine = new DispatcherTimer();
+            timerSine.Tick += new EventHandler(updateAvgLabelText);
+            timerSine.Interval = new TimeSpan(0, 0, 5);
+            timerSine.Start();
+
+        }
+
+        private void updateAvgLabelText(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 1)
+            {
+                return;
+            }
+            if (this.testchart.Count > 0)
+            {
+                this.label_cpu.Content = "平均值:" + ((CpuChart)this.testchart[2]).AvgData.ToString("0") + "%";
+                this.label_mem.Content = "平均值:" + ((MemChart)this.testchart[1]).AvgData.ToString("0.000") + "MB";
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
