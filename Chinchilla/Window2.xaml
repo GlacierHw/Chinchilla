@@ -9,12 +9,12 @@
             <MenuItem Header="Edit"  Visibility="Visible" IsEnabled="False" />
             <MenuItem Header="Setting" Visibility="Visible" IsEnabled="True" Click="MenuItem_Click" />
             <MenuItem Header="Help" Click="MenuItem_Click_1" />
-            
+
         </Menu>
         <ToolBarPanel Height="26" Name="toolBarPanel1" Width="Auto" VerticalAlignment="Top" DockPanel.Dock="Top">
             <ToolBar Height="26" Name="toolBar1" Width="Auto" >
-                    <Button Click="Button_Click">Start</Button>
-                    <Button IsEnabled="False">Screencap</Button>
+                <Button Click="Button_Click">Start</Button>
+                <Button IsEnabled="False">Screencap</Button>
                 <CheckBox Height="26" Name="checkBox1" Width="100" IsChecked="True" Margin="60,0,0,0" Click="checkBox_Checked">流量监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox2" Width="100" IsChecked="True" Click="checkBox_Checked">内存监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox3" Width="100" IsChecked="True" Click="checkBox_Checked">CPU监控</CheckBox>
@@ -33,10 +33,10 @@
             <StatusBarItem />
         </StatusBar>
         <Grid DockPanel.Dock="Left">
-        <TextBox Height="25" Name="textBox1" Width="211"  VerticalAlignment="Top" TextChanged="textBox1_TextChanged"/>
-        <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" />
-            </Grid>
-                <UniformGrid  Columns="2" Rows="2">
+            <TextBox Height="25" Name="textBox1" Width="211"  VerticalAlignment="Top" GotKeyboardFocus ="cleanTooltips" TextChanged="textBox1_TextChanged" TextAlignment="Left" Padding="4" />
+            <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" />
+        </Grid>
+        <UniformGrid  Columns="2" Rows="2">
             <Grid>
                 <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top">
                     <d3:HorizontalIntegerAxis >
@@ -46,7 +46,7 @@
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:VerticalIntegerAxis>
                     <d3:HorizontalAxisTitle Content="流量消耗(KB)" Name="chart_datausageTitle" VerticalAlignment="Top">
-       
+
                     </d3:HorizontalAxisTitle>
                 </d3:ChartPlotter>
             </Grid>
@@ -89,6 +89,6 @@
         </UniformGrid >
         <Label Height="28" Name="label1" Width="120">Label</Label>
         <Grid Height="50" Name="grid1" Width="206" />
-        
+
     </DockPanel>
 </Window>

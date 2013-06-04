@@ -45,7 +45,7 @@ namespace Chinchilla
             Thread newThread = new Thread(ts);
             newThread.Start();
             updateStausBar();
-            
+           
             testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));      
@@ -53,6 +53,8 @@ namespace Chinchilla
         }
 
         void initTextBox() {
+            this.textBox1.Text = "输入包名搜索";
+            this.textBox1.Foreground = System.Windows.Media.Brushes.Gray;
             //this.textBox1.DataContextChanged += new DependencyPropertyChangedEventHandler(textBox1_DataContextChanged);
         }
         
@@ -146,8 +148,8 @@ namespace Chinchilla
             if (this.testchart.Count > 0)
             {
                 this.status_datausage.Content = "流量:"+this.testchart[0].CurrentData.ToString("f2")+"KB";
-                this.status_cpu.Content = "CPU:" + this.testchart[1].CurrentData+"%";
-                this.status_mem.Content = "内存:" + this.testchart[2].CurrentData.ToString("f2") + "MB";
+                this.status_cpu.Content = "CPU:" + this.testchart[2].CurrentData+"%";
+                this.status_mem.Content = "内存:" + this.testchart[1].CurrentData.ToString("f2") + "MB";
             }
             if (this.threValue.Count > 0)
             {
@@ -226,6 +228,13 @@ namespace Chinchilla
                     ((KpiChart)testchart[3]).stop();
                 } else {
                 }
+            }
+        }
+
+        private void cleanTooltips(object sender, KeyboardFocusChangedEventArgs e) {
+            if (this.textBox1.Text.Equals("输入包名搜索")) {
+                this.textBox1.Text = "";
+                this.textBox1.Foreground = System.Windows.Media.Brushes.Black;
             }
         }
     }
