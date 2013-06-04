@@ -33,6 +33,16 @@ namespace Chinchilla
             }
         }
 
+        private double maxData;
+
+        public double MaxData
+        {
+            get
+            {
+                return this.maxData;
+            }
+        }
+
         public override double getData(string package)
         {
             double cpudata = 0;
@@ -50,7 +60,8 @@ namespace Chinchilla
 
             if (this.datalist.Count != 1)
             {
-                this.avgData = -1;
+                this.avgData = 0.0;
+                this.maxData = 0.0;
             }
             else
             {
@@ -58,6 +69,11 @@ namespace Chinchilla
                 {
                     int count = value.Collection.Count;
                     this.avgData = (this.avgData * count + cpudata) / (count + 1);
+                }
+
+                if (cpudata >= this.maxData)
+                {
+                    this.maxData = cpudata;
                 }
             }
 

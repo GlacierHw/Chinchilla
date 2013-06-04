@@ -59,6 +59,7 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
                 <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="40,30,0,0" Name="label_cpu" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
+                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="40,60,0,0" Name="label_cpu_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
             </Grid>
             <Grid>
                 <d3:ChartPlotter Name="chart_mem" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto">
@@ -71,6 +72,7 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
                 <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="40,30,0,0" Name="label_mem" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
+                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="40,60,0,0" Name="label_mem_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
             </Grid>
             <Grid>
                 <d3:ChartPlotter Name="chart_kpi" Margin="0,0,11,0">
