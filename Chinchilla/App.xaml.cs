@@ -12,7 +12,9 @@ namespace Chinchilla {
     /// </summary>
     public partial class App : Application {
         Window2 window2;
+        //MainWindow mw = new MainWindow();
         protected override void OnStartup(StartupEventArgs e) {
+           // mw.Show();
             if (e.Args.Length > 0) {
                 //window2.Show;
                 //window2.checkupdate();
@@ -29,6 +31,7 @@ namespace Chinchilla {
                 //MessageBox.Show(e.Args[0]);
                 //MessageBox.Show("normal window");
             }
+              
         }  
     }
 }

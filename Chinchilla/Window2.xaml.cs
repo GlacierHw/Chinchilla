@@ -14,6 +14,7 @@ using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
+using AvalonDock;
 
 namespace Chinchilla
 {
@@ -71,18 +72,14 @@ namespace Chinchilla
 
         void updateListview() {
             while (listView1.Items.Count == 0) { 
-                try
-                {
+                try{
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
                 }
-                catch (System.Exception ex)
-                {
-                	
+                catch (System.Exception ex){ 	
                 }
-                
             }
         }
 
@@ -262,6 +259,19 @@ namespace Chinchilla
                 this.textBox1.Text = "";
                 this.textBox1.Foreground = System.Windows.Media.Brushes.Black;
             }
+        }
+
+        //show packagelist
+
+        private void pacakgedock_MouseLeave(object sender, MouseEventArgs e) {
+            pacakgedock.Visibility = System.Windows.Visibility.Collapsed;
+            dockPanel2.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void dockPanel2_MouseEnter(object sender, MouseEventArgs e) {
+            pacakgedock.Visibility = System.Windows.Visibility.Visible;
+            // pacakgebtndock.Visibility = System.Windows.Visibility.Visible;
+            dockPanel2.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 }

@@ -39,3 +39,8 @@ E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla_MarkupCompile.cache
 E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.g.resources
 E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.Properties.Resources.resources
 E:\workspace\Chinchilla\Chinchilla\obj\Release\Chinchilla.csproj.GenerateResource.Cache
+E:\workspace\Chinchilla\Chinchilla\bin\Release\AvalonDock.dll
+E:\workspace\Chinchilla\Chinchilla\bin\Release\AvalonDock.pdb
+E:\workspace\Chinchilla\Chinchilla\bin\Release\AvalonDock.xml
+E:\workspace\Chinchilla\Chinchilla\bin\Release\de\AvalonDock.resources.dll
+E:\workspace\Chinchilla\Chinchilla\bin\Release\it-IT\AvalonDock.resources.dll
