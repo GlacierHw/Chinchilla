@@ -59,10 +59,9 @@ namespace Chinchilla
 
             this.currentData = memdata;
 
-            if (this.datalist.Count != 1)
-            {
+            if (this.datalist.Count != 1){
                 this.avgData = 0;
-                this.avgData = 0;
+                this.maxData = 0;
             }
             else
             {

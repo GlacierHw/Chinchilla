@@ -19,7 +19,9 @@
                 <CheckBox Height="26" Name="checkBox1" Width="100" IsChecked="True" Margin="60,0,0,0" Click="checkBox_Checked">流量监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox2" Width="100" IsChecked="True" Click="checkBox_Checked">内存监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox3" Width="100" IsChecked="True" Click="checkBox_Checked">CPU监控</CheckBox>
+                <CheckBox Height="26" Name="checkBox5" Width="100" IsChecked="True" Click="checkBox_Checked">空闲内存监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox4" Width="100" IsChecked="False" Click="checkBox_Checked">KPI监控</CheckBox>
+                
             </ToolBar>
         </ToolBarPanel>
         <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
@@ -41,8 +43,9 @@
             <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" Visibility="Visible" />    
         </Grid>
         <!--Grid DockPanel.Dock="Left" Visibility="Collapsed" Name="pacakgebtndock"></Grid-->
-        <UniformGrid  Columns="2" Rows="2">
-            <Grid>
+        <UniformGrid Margin="0,0,20,0">
+            <!-- Columns="2" Rows="2"-->
+                <Grid Name="grid_datausage">
                 <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top" IsEnabled="True" IsHitTestVisible="True">
                     <d3:Header FontSize="14" Content="流量消耗曲线图(单位:KB)"/>
                     <d3:HorizontalIntegerAxis HorizontalAlignment="Center">
@@ -53,8 +56,8 @@
                     </d3:VerticalIntegerAxis>
                 </d3:ChartPlotter>
             </Grid>
-            <Grid>
-                <d3:ChartPlotter Name="chart_cpu" Margin="0,0,11,0">
+            <Grid Name="grid_cpu">
+                <d3:ChartPlotter Name="chart_cpu" >
                     <d3:Header FontSize="14" Content="CPU消耗曲线图(单位:%)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -66,7 +69,7 @@
                 <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="40,30,0,0" Name="label_cpu" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
                 <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="40,60,0,0" Name="label_cpu_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
             </Grid>
-            <Grid>
+            <Grid Name="grid_mem">
                 <d3:ChartPlotter Name="chart_mem" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto">
                     <d3:Header FontSize="14" Content="内存消耗曲线图(单位:MB)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
@@ -79,8 +82,8 @@
                 <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="40,30,0,0" Name="label_mem" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
                 <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="40,60,0,0" Name="label_mem_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
             </Grid>
-            <Grid>
-                <d3:ChartPlotter Name="chart_kpi" Margin="0,0,11,0">
+            <Grid Name="grid_kpi">
+                <d3:ChartPlotter Name="chart_kpi">
                     <d3:Header FontSize="14" Content="屏幕变化率曲线图(单位:%)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -90,10 +93,17 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
             </Grid>
+            <Grid Name="grid_freemem">
+                <d3:ChartPlotter Name="chart_freemem">
+                    <d3:Header FontSize="14" Content="空闲内存(单位:MB)"/>
+                    <d3:HorizontalAxis HorizontalAlignment="Center">
+                        <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
+                    </d3:HorizontalAxis>
+                    <d3:VerticalAxis>
+                        <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
+                    </d3:VerticalAxis>
+                </d3:ChartPlotter>
+            </Grid>
         </UniformGrid >
-        <Label Height="28" Name="label1" Width="120">Label</Label>
-        <Grid Height="50" Name="grid1" Width="206" />
-        <Rectangle Height="100" Name="rectangle1" Stroke="Black" Width="200" />
-       
     </DockPanel>
 </Window>
