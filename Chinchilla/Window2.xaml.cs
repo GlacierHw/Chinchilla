@@ -15,6 +15,7 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
 
+
 namespace Chinchilla {
     /// <summary>
     /// Interaction logic for Window2.xaml
@@ -47,7 +48,10 @@ namespace Chinchilla {
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
+            testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
+            testchart.Add(new FpsChart(Dispatcher, this.chart_fps, selectedPackage));
             grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
+            grid_fps.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void InitAdbEnv() {
@@ -83,15 +87,11 @@ namespace Chinchilla {
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
                 } catch (System.Exception ex) {
-               
-                	
                 }
-                
             }
         }
 
         void updateListviewDelegate() {
-
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
                 this.listView1.Items.Add(pkg.Key);
             }
@@ -126,7 +126,7 @@ namespace Chinchilla {
         private void updateStausBar() {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateStatus);
-            timerSine.Interval = new TimeSpan(0, 0, 5);
+            timerSine.Interval = new TimeSpan(0, 0, 1);
             timerSine.Start();
 
         }
@@ -146,6 +146,7 @@ namespace Chinchilla {
                 this.status_datausage.Content = "流量:" + this.testchart[0].CurrentData.ToString("f2") + "KB";
                 this.status_cpu.Content = "CPU:" + this.testchart[2].CurrentData + "%";
                 this.status_mem.Content = "内存:" + this.testchart[1].CurrentData.ToString("f2") + "MB";
+                this.status_fps.Content = "FPS:" + this.testchart[5].CurrentData.ToString();
             }
             if (this.threValue.Count > 0) {
                 this.status_datausage_thre.Content = "阈值:" + this.threValue[0] + "KB";
@@ -216,7 +217,7 @@ namespace Chinchilla {
                     testchart[0].restart();
                     grid_datausage.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("空闲内存")) {
-                    testchart[3].restart();
+                    testchart[4].restart();
                     grid_freemem.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("内存")) {
                     testchart[1].restart();
@@ -226,15 +227,18 @@ namespace Chinchilla {
                     grid_cpu.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).restart();
+                    grid_kpi.Visibility = System.Windows.Visibility.Visible;
+                } else if (sender.ToString().Contains("FPS")) {
+                    ((FpsChart)testchart[5]).restart();
+                    grid_fps.Visibility = System.Windows.Visibility.Visible;
                 } else {
-
                 }
             } else if (((CheckBox)sender).IsChecked == false) {
                 if (sender.ToString().Contains("流量")) {
                     testchart[0].stop();
                     grid_datausage.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("空闲内存")) {
-                    testchart[3].stop();
+                    testchart[4].stop();
                     grid_freemem.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("内存")) {
                     grid_mem.Visibility = System.Windows.Visibility.Collapsed;
@@ -245,6 +249,12 @@ namespace Chinchilla {
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).stop();
                     grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
+                } else if (sender.ToString().Contains("KPI")) {
+                    ((KpiChart)testchart[3]).stop();
+                    grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
+                } else if (sender.ToString().Contains("FPS")) {
+                    ((FpsChart)testchart[5]).stop();
+                    grid_fps.Visibility = System.Windows.Visibility.Collapsed;
                 } else {
                 }
             }

@@ -123,6 +123,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FpsChart.cs" />
+    <Compile Include="FreeMemChart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -148,6 +150,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="save">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="save_fps">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="version.cfg">
