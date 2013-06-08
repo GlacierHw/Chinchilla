@@ -47,7 +47,7 @@ namespace Chinchilla {
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
-
+            grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void InitAdbEnv() {
