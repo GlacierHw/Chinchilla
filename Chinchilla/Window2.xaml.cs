@@ -78,7 +78,6 @@ namespace Chinchilla {
             InitAdbEnv();
             while (listView1.Items.Count == 0) {
                 try {
-                
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleFunc(updateListviewDelegate));
@@ -217,7 +216,7 @@ namespace Chinchilla {
                     testchart[0].restart();
                     grid_datausage.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("空闲内存")) {
-                    testchart[4].restart();
+                    testchart[3].restart();
                     grid_freemem.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("内存")) {
                     testchart[1].restart();
@@ -227,8 +226,6 @@ namespace Chinchilla {
                     grid_cpu.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).restart();
-                }else{
-                    grid_kpi.Visibility = System.Windows.Visibility.Visible;
                 } else {
 
                 }
@@ -237,7 +234,7 @@ namespace Chinchilla {
                     testchart[0].stop();
                     grid_datausage.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("空闲内存")) {
-                    testchart[4].stop();
+                    testchart[3].stop();
                     grid_freemem.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("内存")) {
                     grid_mem.Visibility = System.Windows.Visibility.Collapsed;
