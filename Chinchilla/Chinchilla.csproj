@@ -132,7 +132,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FreeMemChart.cs" />
+    <Compile Include="FreeMemChart.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
