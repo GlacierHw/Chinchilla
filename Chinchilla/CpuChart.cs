@@ -54,6 +54,8 @@ namespace Chinchilla
             if (cpuM.Groups.Count > 1)
             {
                 cpudata =  Convert.ToDouble(cpuM.Groups[1].ToString());
+            } else if (!cpuinfo.Contains("CPU")){
+                return -1;
             }
 
             this.currentData = cpudata;

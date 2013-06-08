@@ -42,7 +42,7 @@ namespace Chinchilla
             um.autoupdate();
             initTextBox();
             //updateListview();
-            ThreadStart ts = new ThreadStart(updateListview);
+            ThreadStart ts = new ThreadStart(InitEnv);
             Thread newThread = new Thread(ts);
             newThread.Start();
             updateStausBar();
@@ -54,6 +54,16 @@ namespace Chinchilla
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
             testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
             grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
+            
+        }
+
+        private void InitAdbEnv() {
+            Executecmd.ExecuteCommandSync("adb wait-for-device", 0);
+            Executecmd.ExecuteCommandSync("adb root", 0);
+            Executecmd.ExecuteCommandSync("adb wait-for-device", 0);
+            Executecmd.ExecuteCommandSync("adb remount", 0);
+            Executecmd.ExecuteCommandSync("adb push save /data/local/save", 0);
+            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save", 0);
         }
 
         void initTextBox() {
@@ -72,7 +82,8 @@ namespace Chinchilla
             }
         }
 
-        void updateListview() {
+        void InitEnv() {
+            InitAdbEnv();
             while (listView1.Items.Count == 0) { 
                 try{
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
