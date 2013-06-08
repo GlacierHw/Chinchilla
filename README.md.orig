@@ -2,11 +2,12 @@ Chinchilla
 ==========
 To do list:
 =
+<<<<<<< HEAD
 1.Add VSS/RSS/PSS/USS  Done 
+=======
+1.Add VSS/RSS/PSS/USS 
+>>>>>>> oh my god
 
 2.Add system info
-<<<<<<< HEAD
-remote
-=======
-local
->>>>>>> 123
+
+3.Add 3G/WIFI datausage
