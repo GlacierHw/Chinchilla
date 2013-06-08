@@ -15,7 +15,6 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
 
-
 namespace Chinchilla
 {
     /// <summary>
@@ -52,9 +51,6 @@ namespace Chinchilla
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));      
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
-            testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
-            grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
-            
         }
 
         private void InitAdbEnv() {
@@ -85,18 +81,23 @@ namespace Chinchilla
         void InitEnv() {
             InitAdbEnv();
             while (listView1.Items.Count == 0) { 
-                try{
+                try
+                {
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
                 }
-                catch (System.Exception ex){ 	
+                catch (System.Exception ex)
+                {
+                	
                 }
+                
             }
         }
 
         void updateListviewDelegate() {
+
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
                 this.listView1.Items.Add(pkg.Key);
             }
@@ -243,38 +244,24 @@ namespace Chinchilla
             if (((CheckBox)sender).IsChecked == true) {
                 if (sender.ToString().Contains("流量")) {
                     testchart[0].restart();
-                    grid_datausage.Visibility = System.Windows.Visibility.Visible;  
-                } else if (sender.ToString().Contains("空闲内存")) {
-                    testchart[4].restart();
-                    grid_freemem.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("内存")) {
                     testchart[1].restart();
-                    grid_mem.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("CPU")) {
                     testchart[2].restart();
-                    grid_cpu.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).restart();
-                    grid_kpi.Visibility = System.Windows.Visibility.Visible;
-                } else {
+                }else{
 
                 }
             } else if (((CheckBox)sender).IsChecked == false) {
                 if (sender.ToString().Contains("流量")) {
                     testchart[0].stop();
-                    grid_datausage.Visibility = System.Windows.Visibility.Collapsed;
-                } else if (sender.ToString().Contains("空闲内存")) {
-                    testchart[4].stop();
-                    grid_freemem.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("内存")) {
-                    grid_mem.Visibility = System.Windows.Visibility.Collapsed;
                     testchart[1].stop();
                 } else if (sender.ToString().Contains("CPU")) {
                     testchart[2].stop();
-                    grid_cpu.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).stop();
-                    grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
                 } else {
                 }
             }
@@ -285,18 +272,6 @@ namespace Chinchilla
                 this.textBox1.Text = "";
                 this.textBox1.Foreground = System.Windows.Media.Brushes.Black;
             }
-        }
-
-        //show packagelist
-
-        private void pacakgedock_MouseLeave(object sender, MouseEventArgs e) {
-            pacakgedock.Visibility = System.Windows.Visibility.Collapsed;
-            dockPanel2.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        private void dockPanel2_MouseEnter(object sender, MouseEventArgs e) {
-            pacakgedock.Visibility = System.Windows.Visibility.Visible;
-            dockPanel2.Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 }
