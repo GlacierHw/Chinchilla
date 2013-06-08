@@ -53,8 +53,9 @@ namespace Chinchilla
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));      
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
             testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
+            testchart.Add(new FpsChart(Dispatcher, this.chart_fps, selectedPackage));
             grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
-            
+            grid_fps.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void InitAdbEnv() {
@@ -138,7 +139,7 @@ namespace Chinchilla
         {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateStatus);
-            timerSine.Interval = new TimeSpan(0, 0, 5);
+            timerSine.Interval = new TimeSpan(0, 0, 1);
             timerSine.Start();
             
         }
@@ -160,6 +161,7 @@ namespace Chinchilla
                 this.status_datausage.Content = "流量:"+this.testchart[0].CurrentData.ToString("f2")+"KB";
                 this.status_cpu.Content = "CPU:" + this.testchart[2].CurrentData+"%";
                 this.status_mem.Content = "内存:" + this.testchart[1].CurrentData.ToString("f2") + "MB";
+                this.status_fps.Content = "FPS:" + this.testchart[5].CurrentData.ToString();
             }
             if (this.threValue.Count > 0)
             {
@@ -256,9 +258,11 @@ namespace Chinchilla
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).restart();
                     grid_kpi.Visibility = System.Windows.Visibility.Visible;
+                } else if (sender.ToString().Contains("FPS")){
+                    ((FpsChart)testchart[5]).restart();
+                    grid_fps.Visibility = System.Windows.Visibility.Visible;
                 } else {
-
-                }
+                    }
             } else if (((CheckBox)sender).IsChecked == false) {
                 if (sender.ToString().Contains("流量")) {
                     testchart[0].stop();
@@ -275,6 +279,12 @@ namespace Chinchilla
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).stop();
                     grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
+                } else if (sender.ToString().Contains("KPI")) {
+                    ((KpiChart)testchart[3]).stop();
+                    grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
+                } else if (sender.ToString().Contains("FPS")) {
+                    ((FpsChart)testchart[5]).stop();
+                    grid_fps.Visibility = System.Windows.Visibility.Collapsed;
                 } else {
                 }
             }

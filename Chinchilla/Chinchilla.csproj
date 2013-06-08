@@ -99,6 +99,7 @@
     <Compile Include="DatausageChart.cs" />
     <Compile Include="DeviceInfoHelper.cs" />
     <Compile Include="Executecmd.cs" />
+    <Compile Include="FpsChart.cs" />
     <Compile Include="KpiChart.cs" />
     <Compile Include="MemChart.cs" />
     <Compile Include="ThresholdSetting.xaml.cs">
@@ -160,6 +161,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="save">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="save_fps">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="version.cfg">

@@ -47,7 +47,6 @@ namespace Chinchilla
             if (mMatches.Count > 0) {
                 pkginfo.Add("system_server", "10000");
             }
-            
             /*
             while (strLine != null)
             {
