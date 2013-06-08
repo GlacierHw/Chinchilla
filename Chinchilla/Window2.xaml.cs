@@ -16,13 +16,11 @@ using System.Windows.Threading;
 using System.Threading;
 
 
-namespace Chinchilla
-{
+namespace Chinchilla {
     /// <summary>
     /// Interaction logic for Window2.xaml
     /// </summary>
-    public partial class Window2 : Window
-    {
+    public partial class Window2 : Window {
         private Dictionary<string, string> selectedPackage = new Dictionary<string, string>();
         Dictionary<string, string> pkginfo = new Dictionary<string, string>();
         List<Basechart> testchart = new List<Basechart>();
@@ -31,13 +29,11 @@ namespace Chinchilla
         public delegate void DeleFunc();
         private ThresholdSetting thresholdSettingWindow;
 
-        public Window2()
-        {
+        public Window2() {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
             UpdateManager um = new UpdateManager(this);
             um.autoupdate();
             initTextBox();
@@ -47,14 +43,14 @@ namespace Chinchilla
             newThread.Start();
             updateStausBar();
             updateLabel();
-           
+
             testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
-            testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));      
+            testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
             testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
             grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
-            
+
         }
 
         private void InitAdbEnv() {
@@ -71,12 +67,11 @@ namespace Chinchilla
             this.textBox1.Foreground = System.Windows.Media.Brushes.Gray;
             //this.textBox1.DataContextChanged += new DependencyPropertyChangedEventHandler(textBox1_DataContextChanged);
         }
-        
+
         void textBox1_TextChanged(object sender, TextChangedEventArgs e) {
             this.listView1.Items.Clear();
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
-                if (pkg.Key.IndexOf(this.textBox1.Text)>= 0)
-                {
+                if (pkg.Key.IndexOf(this.textBox1.Text) >= 0) {
                     this.listView1.Items.Add(pkg.Key);
                 }
             }
@@ -84,14 +79,13 @@ namespace Chinchilla
 
         void InitEnv() {
             InitAdbEnv();
-            while (listView1.Items.Count == 0) { 
-                try{
+            while (listView1.Items.Count == 0) {
+                try {
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
-                }
-                catch (System.Exception ex){ 	
+                } catch (System.Exception ex) {
                 }
             }
         }
@@ -101,32 +95,26 @@ namespace Chinchilla
                 this.listView1.Items.Add(pkg.Key);
             }
         }
-            
 
-        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+
+        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (listView1.SelectedItems.Count > 5) {
                 listView1.SelectedItems.RemoveAt(5);
-                MessageBox.Show("最多选择5个包监测","提示");
+                MessageBox.Show("最多选择5个包监测", "提示");
             }
 
             selectedPackage.Clear();
-            foreach(var item in this.listView1.SelectedItems)
-            {
+            foreach (var item in this.listView1.SelectedItems) {
                 selectedPackage[item.ToString()] = pkginfo[item.ToString()];
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (selectedPackage.Count == 0)
-            {
-                MessageBox.Show("至少选择1个包监测","提示");
-            }else if (selectedPackage.Count > 5) {
-                 MessageBox.Show("最多选择5个包监测","提示");
-            }
-            else
-            {
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            if (selectedPackage.Count == 0) {
+                MessageBox.Show("至少选择1个包监测", "提示");
+            } else if (selectedPackage.Count > 5) {
+                MessageBox.Show("最多选择5个包监测", "提示");
+            } else {
                 foreach (Basechart chart in testchart) {
                     chart.updatechart(selectedPackage);
                 }
@@ -134,13 +122,12 @@ namespace Chinchilla
             }
         }
 
-        private void updateStausBar()
-        {
+        private void updateStausBar() {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateStatus);
             timerSine.Interval = new TimeSpan(0, 0, 5);
             timerSine.Start();
-            
+
         }
 
         private void updateStatus(object sender, EventArgs e) {
@@ -148,39 +135,32 @@ namespace Chinchilla
                 return;
             }
             string selectedProc = "";
-            foreach(var pkginfo in this.selectedPackage)
-            {
-                if (selectedProc !="")
-                    selectedProc=selectedProc+";";
-                selectedProc = selectedProc+ pkginfo.Key;
+            foreach (var pkginfo in this.selectedPackage) {
+                if (selectedProc != "")
+                    selectedProc = selectedProc + ";";
+                selectedProc = selectedProc + pkginfo.Key;
             }
             this.status_proname.Content = selectedProc;
-            if (this.testchart.Count > 0)
-            {
-                this.status_datausage.Content = "流量:"+this.testchart[0].CurrentData.ToString("f2")+"KB";
-                this.status_cpu.Content = "CPU:" + this.testchart[2].CurrentData+"%";
+            if (this.testchart.Count > 0) {
+                this.status_datausage.Content = "流量:" + this.testchart[0].CurrentData.ToString("f2") + "KB";
+                this.status_cpu.Content = "CPU:" + this.testchart[2].CurrentData + "%";
                 this.status_mem.Content = "内存:" + this.testchart[1].CurrentData.ToString("f2") + "MB";
             }
-            if (this.threValue.Count > 0)
-            {
+            if (this.threValue.Count > 0) {
                 this.status_datausage_thre.Content = "阈值:" + this.threValue[0] + "KB";
                 this.status_cpu_thre.Content = "阈值:" + this.threValue[1] + "%";
                 this.status_mem_thre.Content = "阈值:" + this.threValue[2] + "MB";
 
-                if (this.testchart.Count > 0)
-                {
-                    if (this.testchart[0].CurrentData > Convert.ToDouble(this.threValue[0]))
-                    {
+                if (this.testchart.Count > 0) {
+                    if (this.testchart[0].CurrentData > Convert.ToDouble(this.threValue[0])) {
                         this.status_datausage.Background = new SolidColorBrush(Colors.Red);
                     }
 
-                    if (this.testchart[1].CurrentData > Convert.ToDouble(this.threValue[1]))
-                    {
+                    if (this.testchart[1].CurrentData > Convert.ToDouble(this.threValue[1])) {
                         this.status_cpu.Background = new SolidColorBrush(Colors.Red);
                     }
 
-                    if (this.testchart[2].CurrentData > Convert.ToDouble(this.threValue[2]))
-                    {
+                    if (this.testchart[2].CurrentData > Convert.ToDouble(this.threValue[2])) {
                         this.status_mem.Background = new SolidColorBrush(Colors.Red);
                     }
                 }
@@ -188,8 +168,7 @@ namespace Chinchilla
 
         }
 
-        private void updateLabel()
-        {
+        private void updateLabel() {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateLabelText);
             timerSine.Interval = new TimeSpan(0, 0, 5);
@@ -197,14 +176,11 @@ namespace Chinchilla
 
         }
 
-        private void updateLabelText(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 1)
-            {
+        private void updateLabelText(object sender, EventArgs e) {
+            if (listView1.SelectedItems.Count > 1) {
                 return;
             }
-            if (this.testchart.Count > 0)
-            {
+            if (this.testchart.Count > 0) {
                 this.label_cpu.Content = "平均值:" + ((CpuChart)this.testchart[2]).AvgData.ToString("0") + "%";
                 this.label_mem.Content = "平均值:" + ((MemChart)this.testchart[1]).AvgData.ToString("0.000") + "MB";
 
@@ -213,16 +189,12 @@ namespace Chinchilla
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.thresholdSettingWindow == null)
-            {
+        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+            if (this.thresholdSettingWindow == null) {
                 this.thresholdSettingWindow = new ThresholdSetting();
                 this.thresholdSettingWindow.Owner = this;
                 this.thresholdSettingWindow.Show();
-            }
-            else
-            {
+            } else {
                 this.thresholdSettingWindow.Show();
             }
         }
@@ -231,10 +203,8 @@ namespace Chinchilla
             MessageBox.Show("1.右键点击图标可保存图片及查看更多操作，滚轮可放大/缩小图片\n 2.目前阈值报警功能仅支持监测一个应用时使用\n3.beta版功能较少，有任何需求请联系邓呈亮&&何韡", "提示");
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            foreach (Basechart chart in testchart)
-            {
+        private void Window_Closed(object sender, EventArgs e) {
+            foreach (Basechart chart in testchart) {
                 chart.dispose();
             }
         }
@@ -243,7 +213,7 @@ namespace Chinchilla
             if (((CheckBox)sender).IsChecked == true) {
                 if (sender.ToString().Contains("流量")) {
                     testchart[0].restart();
-                    grid_datausage.Visibility = System.Windows.Visibility.Visible;  
+                    grid_datausage.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("空闲内存")) {
                     testchart[4].restart();
                     grid_freemem.Visibility = System.Windows.Visibility.Visible;

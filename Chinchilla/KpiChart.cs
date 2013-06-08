@@ -24,10 +24,8 @@ using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
 using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
 using Microsoft.Research.DynamicDataDisplay.PointMarkers;
 
-namespace Chinchilla
-{
-    class KpiChart : Basechart
-    {
+namespace Chinchilla {
+    class KpiChart : Basechart {
         public String charttype = "屏幕变化率";
         private Process proc = null;
         private ThreadStart ts;
@@ -36,40 +34,33 @@ namespace Chinchilla
         private Thread getDiffThread;
         private List<VerticalLine> vlines = new List<VerticalLine>();
         public delegate void DeleFunc(double value);
-        public delegate void DeleRect(double value,double width);
+        public delegate void DeleRect(double value, double width);
         ObservableDataSource<Point> markerPoints = new ObservableDataSource<Point>();
 
         public KpiChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
-            : base(p, newchart, packagelist)
-        {
+            : base(p, newchart, packagelist) {
 
         }
 
-        public override void asyncProcData()
-        {
+        public override void asyncProcData() {
             return;
         }
 
-        private void clearVerticalLine(ChartPlotter chart)
-        {
+        private void clearVerticalLine(ChartPlotter chart) {
             List<VerticalLine> vlines = new List<VerticalLine>();
-            foreach (var child in chart.Children)
-            {
-                if (child is VerticalLine)
-                {
+            foreach (var child in chart.Children) {
+                if (child is VerticalLine) {
                     vlines.Add(child as VerticalLine);
                 }
             }
 
-            foreach (var child in vlines)
-            {
+            foreach (var child in vlines) {
                 chart.Children.Remove(child);
             }
 
         }
 
-        public override void updatechart(Dictionary<string, string> packagelist)
-        {
+        public override void updatechart(Dictionary<string, string> packagelist) {
             isRunning = true;
             pkglist = new Dictionary<string, string>();
             clearLines();
@@ -86,17 +77,15 @@ namespace Chinchilla
             this.chart.Children.Add(mpg);
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
-            ts = new ThreadStart(getScreenDiff);   
+            ts = new ThreadStart(getScreenDiff);
             if (getDiffThread == null) {
                 if (!runable) {
-                    return; 
+                    return;
                 }
                 getDiffThread = new Thread(ts);
                 getDiffThread.SetApartmentState(ApartmentState.STA);
                 getDiffThread.Start();
-            }
-            else
-            {
+            } else {
                 getDiffThread.Abort();
                 if (!proc.HasExited)
                     proc.Kill();
@@ -109,33 +98,31 @@ namespace Chinchilla
         public override void stop() {
             if (!isRunning)
                 return;
-            if (getDiffThread !=null)
+            if (getDiffThread != null)
                 getDiffThread.Abort();
-            if (proc!=null && !proc.HasExited)
+            if (proc != null && !proc.HasExited)
                 proc.Kill();
             //getDiffThread = new Thread(ts);
             //getDiffThread.SetApartmentState(ApartmentState.STA);
             //getDiffThread.Start();
         }
 
-       public override void restart() {
+        public override void restart() {
             runable = true;
             if (!isRunning) {
                 return;
             }
 
-            if (proc!=null && !proc.HasExited)
+            if (proc != null && !proc.HasExited)
                 proc.Kill();
             getDiffThread = new Thread(ts);
             getDiffThread.SetApartmentState(ApartmentState.STA);
             getDiffThread.Start();
         }
 
-        private void getScreenDiff()
-        {
-            
-            try
-            {
+        private void getScreenDiff() {
+
+            try {
                 //if (proc != null)
                 //    proc.Kill();
                 string commandarg = "shell /data/local/save 50";
@@ -155,18 +142,16 @@ namespace Chinchilla
                 string line;
                 Regex cpuReg = new Regex(@"time:\s*(\d*)\s*\S*diff:\s*-*(\d*)\s*");
                 long linecount = 0;
-                
+
                 int startIndex = 0;
                 int endIndex = 0;
                 int safeDistance = 20;
                 int safeDistanceCount = 0;
 
                 while ((line = proc.StandardOutput.ReadLine()) != null) {
-                                      
-                    if (line.Contains("time"))
-                    {
-                        if (linecount == 0)
-                        {
+
+                    if (line.Contains("time")) {
+                        if (linecount == 0) {
                             linecount++;
                             continue;
                         }
@@ -176,39 +161,27 @@ namespace Chinchilla
                         double diffy = Math.Abs(Convert.ToDouble(diffM.Groups[2].ToString()));
                         int pointcount = this.datalist["屏幕变化率"].Collection.Count;
 
-                        if (pointcount > 10)
-                        {
+                        if (pointcount > 10) {
                             double lastvaluey = this.datalist["屏幕变化率"].Collection[pointcount - 1].Y;
                             double lastvaluex = this.datalist["屏幕变化率"].Collection[pointcount - 1].X;
-                            if (lastvaluey > 0 && diffy == 0)
-                            {
-                                if (endIndex == 0)
-                                {
+                            if (lastvaluey > 0 && diffy == 0) {
+                                if (endIndex == 0) {
                                     endIndex = pointcount;
                                 }
                                 safeDistanceCount = 0;
-                            }
-                            else if (lastvaluey == 0 && diffy > 0)
-                            {
-                                if (startIndex == 0)
-                                {
+                            } else if (lastvaluey == 0 && diffy > 0) {
+                                if (startIndex == 0) {
                                     startIndex = pointcount - 1;
-                                }
-                                else if (endIndex != 0 && (pointcount - 1 - endIndex) < safeDistance)
-                                {
+                                } else if (endIndex != 0 && (pointcount - 1 - endIndex) < safeDistance) {
                                     endIndex = 0;
                                 }
                                 safeDistanceCount = 0;
-                            }
-                            else
-                            {
-                                if (startIndex != 0 && endIndex != 0)
-                                {
+                            } else {
+                                if (startIndex != 0 && endIndex != 0) {
                                     safeDistanceCount++;
                                 }
 
-                                if (safeDistanceCount >= safeDistance)
-                                {
+                                if (safeDistanceCount >= safeDistance) {
                                     double endx = this.datalist["屏幕变化率"].Collection[endIndex].X;
                                     double startx = this.datalist["屏幕变化率"].Collection[startIndex].X;
                                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
@@ -225,32 +198,25 @@ namespace Chinchilla
                                 }
                             }
                         }
-                        this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66:diffy));
+                        this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66 : diffy));
                     }
                 }
 
                 //proc.Dispose();
                 // Display the command output.
                 //Console.WriteLine(result);
-            }
-            catch (Exception objException)
-            {
+            } catch (Exception objException) {
                 // we eat the exception
                 Console.WriteLine("Get error when reading screen diff,please contact hewei03@baidu.com,error:" + objException.Message);
             }
         }
 
-        public override void dispose()
-        {
+        public override void dispose() {
             //getDiffThread.Abort();
-            if (proc != null)
-            {
-                try
-                {
+            if (proc != null) {
+                try {
                     proc.Kill();
-                }
-                catch(Exception e)
-                {
+                } catch (Exception e) {
                     Console.WriteLine(e.Message);
                 }
             }
@@ -260,8 +226,7 @@ namespace Chinchilla
             base.dispose();
         }
 
-        private void addVerticalLine(double value)
-        {
+        private void addVerticalLine(double value) {
             VerticalLine vl = new VerticalLine();
             vl.Value = value;
             vl.Stroke = new SolidColorBrush(Colors.Green);
@@ -270,10 +235,9 @@ namespace Chinchilla
             this.chart.Children.Add(vl);
         }
 
-        private void addRect(double value,double width)
-        {
+        private void addRect(double value, double width) {
             RectangleHighlight rh = new RectangleHighlight();
-            rh.Bounds = new Rect(new Point(value-width, 0), new Point(value, 0));
+            rh.Bounds = new Rect(new Point(value - width, 0), new Point(value, 0));
             rh.Stroke = new SolidColorBrush(Colors.OrangeRed);
             rh.StrokeThickness = 2;
             this.chart.Children.Add(rh);
