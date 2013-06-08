@@ -147,7 +147,7 @@ namespace Chinchilla {
                 int endIndex = 0;
                 int safeDistance = 100;
                 int safeDistanceCount = 0;
-                int pointShowStep = 3;
+                int pointShowStep = 4;
                 int pointCurrentStep = 0;
 
                 while ((line = proc.StandardOutput.ReadLine()) != null) {
@@ -204,9 +204,21 @@ namespace Chinchilla {
                         }
 
                         pointCurrentStep++;
-                        if (pointShowStep < pointCurrentStep) {
+                        if (pointShowStep < pointCurrentStep)
+                        {
                             this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66 : diffy));
                             pointCurrentStep = 0;
+                        }
+                        else
+                        {
+                            if (pointcount >= 1)
+                            {
+                                double lastvaluey = this.datalist["屏幕变化率"].Collection[pointcount - 1].Y;
+                                if (diffy != lastvaluey)
+                                {
+                                    this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66 : diffy));
+                                }
+                            }
                         }
                     }
                 }
