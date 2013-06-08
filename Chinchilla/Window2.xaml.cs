@@ -60,7 +60,9 @@ namespace Chinchilla {
             Executecmd.ExecuteCommandSync("adb wait-for-device", 0);
             Executecmd.ExecuteCommandSync("adb remount", 0);
             Executecmd.ExecuteCommandSync("adb push save /data/local/save", 0);
-            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save", 0);
+            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save", 0); 
+            Executecmd.ExecuteCommandSync("adb push save_fps /data/local/save_fps", 0);
+            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save_fps", 0);
         }
 
         void initTextBox() {

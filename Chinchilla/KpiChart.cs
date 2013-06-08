@@ -125,7 +125,7 @@ namespace Chinchilla {
             try {
                 //if (proc != null)
                 //    proc.Kill();
-                string commandarg = "shell /data/local/save 50";
+                string commandarg = "shell /data/local/save 15";
                 System.Diagnostics.ProcessStartInfo procStartInfo =
                     new System.Diagnostics.ProcessStartInfo("adb", commandarg);
 
@@ -145,7 +145,7 @@ namespace Chinchilla {
 
                 int startIndex = 0;
                 int endIndex = 0;
-                int safeDistance = 20;
+                int safeDistance = 100;
                 int safeDistanceCount = 0;
                 int pointShowStep = 3;
                 int pointCurrentStep = 0;
@@ -197,8 +197,8 @@ namespace Chinchilla {
                                     startIndex = 0;
                                     endIndex = 0;
                                     safeDistanceCount = 0;
-                                    this.datalist["屏幕变化率"].AppendAsync(disp, new Point(startx, 0));
-                                    this.datalist["屏幕变化率"].AppendAsync(disp, new Point(endx, 0));
+                                    //this.datalist["屏幕变化率"].AppendAsync(disp, new Point(startx, 0));
+                                    //this.datalist["屏幕变化率"].AppendAsync(disp, new Point(endx, 0));
                                 }
                             }
                         }

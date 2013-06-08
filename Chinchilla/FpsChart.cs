@@ -137,12 +137,7 @@ namespace Chinchilla
             {
                 //if (proc != null)
                 //    proc.Kill();
-
-                Executecmd.ExecuteCommandSync("adb root", 0);
-                Executecmd.ExecuteCommandSync("adb remount", 0);
-                Executecmd.ExecuteCommandSync("adb push save_fps /data/local/save_fps", 0);
-                Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save_fps", 0);
-
+                
                 string commandarg = "shell /data/local/save_fps";
                 System.Diagnostics.ProcessStartInfo procStartInfo =
                     new System.Diagnostics.ProcessStartInfo("adb", commandarg);
