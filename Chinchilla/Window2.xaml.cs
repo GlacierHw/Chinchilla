@@ -78,13 +78,13 @@ namespace Chinchilla {
             InitAdbEnv();
             while (listView1.Items.Count == 0) {
                 try {
-                {
+                
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
                 } catch (System.Exception ex) {
-                {
+               
                 	
                 }
                 
