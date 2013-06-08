@@ -28,41 +28,29 @@ namespace Chinchilla
             String allpkginfo = "";
             String uid = "1001";
             Dictionary<string, string> pkginfo = new Dictionary<string, string>();
-
-            if (!Connected)
-            {
+            if (!Connected){
                 return null;
             }
-
             Executecmd.ExecuteCommandSync("adb shell dumpsys package", out allpkginfo);
-
-            /*
-            FileStream fi = new FileStream(pkgfile, FileMode.Open);
-            StreamReader m_streamReader = new StreamReader(fi);
-            m_streamReader.BaseStream.Seek(0, SeekOrigin.Begin);
-            string strLine = m_streamReader.ReadLine();
-            */
-
             Regex reg = new Regex(@".*Package \[(\S+)\].*\s*userId=(\d*)");//Package ['(\S+)']
             MatchCollection mMatches = reg.Matches(allpkginfo);
-            foreach (Match m in mMatches)
-            {
-                if (m.Groups.Count > 2 && Convert.ToInt32(m.Groups[2].ToString()) >10000)
-                {
-                    try
-                    {
+            foreach (Match m in mMatches){
+                if (m.Groups.Count > 2 && Convert.ToInt32(m.Groups[2].ToString()) >10000){
+                    try{
                         pkginfo.Add(m.Groups[1].ToString(), m.Groups[2].ToString());
                     }
-                    catch (Exception)
-                    {
+                    catch (Exception){
                         //eat exception
                     }
                 }
             }
-            if (pkginfo.Count > 0)
-            {
+            if (mMatches.Count > 0) {
                 pkginfo.Add("system_server", "10000");
             }
+<<<<<<< HEAD
+            
+=======
+>>>>>>> nongsini
             /*
             while (strLine != null)
             {

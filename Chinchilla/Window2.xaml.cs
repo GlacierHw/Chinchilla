@@ -15,7 +15,6 @@ using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Threading;
 
-
 namespace Chinchilla {
     /// <summary>
     /// Interaction logic for Window2.xaml
@@ -48,8 +47,6 @@ namespace Chinchilla {
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
-            testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
-            grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
 
         }
 
@@ -81,16 +78,21 @@ namespace Chinchilla {
             InitAdbEnv();
             while (listView1.Items.Count == 0) {
                 try {
+                {
                     pkginfo = DeviceInfoHelper.GetPackageInfo();
                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
                 } catch (System.Exception ex) {
+                {
+                	
                 }
+                
             }
         }
 
         void updateListviewDelegate() {
+
             foreach (KeyValuePair<string, string> pkg in pkginfo) {
                 this.listView1.Items.Add(pkg.Key);
             }
@@ -225,6 +227,7 @@ namespace Chinchilla {
                     grid_cpu.Visibility = System.Windows.Visibility.Visible;
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).restart();
+                }else{
                     grid_kpi.Visibility = System.Windows.Visibility.Visible;
                 } else {
 

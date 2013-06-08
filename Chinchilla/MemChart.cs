@@ -46,12 +46,14 @@ namespace Chinchilla {
             Regex memReg = new Regex(@"\s*(\d*)K\s*\d*K\s*" + package + @"\s*");
             Match memM = memReg.Match(meminfo);
             if (memM.Groups.Count > 1) {
+  
                 memdata = Convert.ToDouble(memM.Groups[1].ToString()) / 1024;
             } else if (!meminfo.Contains("PSS")) {
                 return -1;
             }
 
             this.currentData = memdata;
+
 
             if (this.datalist.Count != 1) {
                 this.avgData = 0;
@@ -71,6 +73,13 @@ namespace Chinchilla {
 
         public MemChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist) {
+        }
+
+        public override void updatechart(Dictionary<string, string> packagelist)
+        {
+            this.avgData = 0;
+            this.maxData = 0;
+            base.updatechart(packagelist);
         }
     }
 }
