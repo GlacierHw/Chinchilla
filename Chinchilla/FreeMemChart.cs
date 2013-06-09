@@ -76,6 +76,7 @@ namespace Chinchilla {
             string lineName = "系统空闲内存";
             datalist.Add(lineName, new ObservableDataSource<Point>());
             listgraph.Add(chart.AddLineGraph(datalist[lineName], colorpool[linenum++], 2, lineName));//Color.FromRgb(72, 118, 255)
+  
             aTimer.Start();
         }
 

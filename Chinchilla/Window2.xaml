@@ -36,7 +36,7 @@
             <StatusBarItem Name ="status_fps" Content="FPS:" Width="Auto"/>
             <StatusBarItem />
         </StatusBar>
-        <Grid DockPanel.Dock="Left" Width="18" Visibility="Collapsed" MouseEnter="dockPanel2_MouseEnter"  Name="dockPanel2" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <Grid DockPanel.Dock="Left" Width="18" Visibility="Collapsed" MouseEnter="dockPanel2_MouseEnter"  Name="dockPanel2" VerticalAlignment="Center" HorizontalAlignment="Left" >
             <Button Name="rectangle2"  Width="15" HorizontalAlignment="Left" Margin="0,-266,0,-207" Content=">"/>
         </Grid>
         <Grid DockPanel.Dock="Left" Visibility="Visible" Name="pacakgedock" MouseLeave="pacakgedock_MouseLeave">
@@ -44,10 +44,14 @@
             <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" Visibility="Visible" />
         </Grid>
         <!--Grid DockPanel.Dock="Left" Visibility="Collapsed" Name="pacakgebtndock"></Grid-->
-        <UniformGrid Margin="0,0,20,0">
-            <!-- Columns="2" Rows="2"-->
+        <Grid>
+            <Image Source="2 .jpg" Name="image1" Stretch="Fill" Opacity="1" Visibility="Visible" IsEnabled="True" IsHitTestVisible="False"  Margin="0,0,0,0"/>
+        <UniformGrid Margin="0,0,20,0" >
+            
+            <!-- Columns="2" Rows="2"-->  
             <Grid Name="grid_datausage">
-                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" MaxWidth="Infinity" VerticalContentAlignment="Top" IsEnabled="True" IsHitTestVisible="True">
+                
+                <d3:ChartPlotter Name="chart_datausage" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Opacity="0.5" MaxWidth="Infinity" VerticalContentAlignment="Top" IsEnabled="True" IsHitTestVisible="True">
                     <d3:Header FontSize="14" Content="流量消耗曲线图(单位:KB)"/>
                     <d3:HorizontalIntegerAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -56,9 +60,10 @@
                         <d3:VerticalIntegerAxis ></d3:VerticalIntegerAxis>
                     </d3:VerticalIntegerAxis>
                 </d3:ChartPlotter>
+                
             </Grid>
             <Grid Name="grid_cpu">
-                <d3:ChartPlotter Name="chart_cpu" >
+                <d3:ChartPlotter Name="chart_cpu" Opacity="0.5">
                     <d3:Header FontSize="14" Content="CPU消耗曲线图(单位:%)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -68,10 +73,10 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
                 <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_cpu" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
-                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60,60,0,0" Name="label_cpu_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
+                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60.012,51.677,0,0" Name="label_cpu_max" VerticalAlignment="Top" Width="58" Panel.ZIndex="2" />
             </Grid>
             <Grid Name="grid_mem">
-                <d3:ChartPlotter Name="chart_mem" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto">
+                <d3:ChartPlotter Name="chart_mem" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Opacity="0.5">
                     <d3:Header FontSize="14" Content="内存消耗曲线图(单位:MB)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -81,10 +86,10 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
                 <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_mem" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
-                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60,60,0,0" Name="label_mem_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
+                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60,51.677,0,0" Name="label_mem_max" VerticalAlignment="Top" Width="58" Panel.ZIndex="2" />
             </Grid>
             <Grid Name="grid_kpi">
-                <d3:ChartPlotter Name="chart_kpi">
+                <d3:ChartPlotter Name="chart_kpi" Opacity="0.5">
                     <d3:Header FontSize="14" Content="屏幕变化率曲线图(单位:%)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -95,7 +100,11 @@
                 </d3:ChartPlotter>
             </Grid>
             <Grid Name="grid_freemem">
-                <d3:ChartPlotter Name="chart_freemem">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="251.717*" />
+                    <ColumnDefinition Width="0*" />
+                </Grid.ColumnDefinitions>
+                <d3:ChartPlotter Name="chart_freemem" Opacity="0.5" Grid.ColumnSpan="2">
                     <d3:Header FontSize="14" Content="空闲内存(单位:MB)"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -104,11 +113,11 @@
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
-                <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_freemem" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
-                <Label Content="最小值：" Height="28" HorizontalAlignment="Left" Margin="60,60,0,0" Name="label_freemem_min" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
+                <Label Content="平均值：" Height="28" Margin="60,30,98,0" Name="label_freemem" VerticalAlignment="Top" Panel.ZIndex="2" />
+                <Label Content="最小值：" Height="28" Margin="60,51.677,98,0" Name="label_freemem_min" VerticalAlignment="Top" Panel.ZIndex="2" />
             </Grid>
             <Grid Name="grid_fps">
-                <d3:ChartPlotter Name="chart_fps">
+                <d3:ChartPlotter Name="chart_fps" Opacity="0.5">
                     <d3:Header FontSize="14" Content="帧率变化曲线图"/>
                     <d3:HorizontalAxis HorizontalAlignment="Center">
                         <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
@@ -118,6 +127,9 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
             </Grid>
+              
         </UniformGrid >
+            
+            </Grid>
     </DockPanel>
 </Window>
