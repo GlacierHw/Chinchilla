@@ -72,8 +72,8 @@
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
-                <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_cpu" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
-                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60.012,51.677,0,0" Name="label_cpu_max" VerticalAlignment="Top" Width="58" Panel.ZIndex="2" />
+                <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_cpu" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" Opacity="0.5" />
+                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60.012,51.677,0,0" Name="label_cpu_max" VerticalAlignment="Top" Width="58" Panel.ZIndex="2" Opacity="0.5" />
             </Grid>
             <Grid Name="grid_mem">
                 <d3:ChartPlotter Name="chart_mem" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto" Opacity="0.5">
@@ -85,8 +85,8 @@
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
-                <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_mem" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" />
-                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60,51.677,0,0" Name="label_mem_max" VerticalAlignment="Top" Width="58" Panel.ZIndex="2" />
+                <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_mem" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" Opacity="0.5" />
+                <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60,51.677,0,0" Name="label_mem_max" VerticalAlignment="Top" Width="58" Panel.ZIndex="2" Opacity="0.5" />
             </Grid>
             <Grid Name="grid_kpi">
                 <d3:ChartPlotter Name="chart_kpi" Opacity="0.5">
@@ -113,8 +113,8 @@
                         <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
-                <Label Content="平均值：" Height="28" Margin="60,30,98,0" Name="label_freemem" VerticalAlignment="Top" Panel.ZIndex="2" />
-                <Label Content="最小值：" Height="28" Margin="60,51.677,98,0" Name="label_freemem_min" VerticalAlignment="Top" Panel.ZIndex="2" />
+                <Label Content="平均值：" Height="28" Margin="60,30,98,0" Name="label_freemem" VerticalAlignment="Top" Panel.ZIndex="2" Opacity="0.5" />
+                <Label Content="最小值：" Height="28" Margin="60,51.677,98,0" Name="label_freemem_min" VerticalAlignment="Top" Panel.ZIndex="2" Opacity="0.5" />
             </Grid>
             <Grid Name="grid_fps">
                 <d3:ChartPlotter Name="chart_fps" Opacity="0.5">
