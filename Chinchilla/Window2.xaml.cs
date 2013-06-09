@@ -32,18 +32,25 @@ namespace Chinchilla {
         public Window2() {
             InitializeComponent();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e) {
+        
+        private void checkupdate() {
             UpdateManager um = new UpdateManager(this);
             um.autoupdate();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            ThreadStart tss = new ThreadStart(checkupdate);
+            Thread myThread = new Thread(tss);
+            myThread.Start();
+            
             initTextBox();
             //updateListview();
             ThreadStart ts = new ThreadStart(InitEnv);
             Thread newThread = new Thread(ts);
             newThread.Start();
+
             updateStausBar();
             updateLabel();
-
             testchart.Add(new DatausageChart(Dispatcher, this.chart_datausage, selectedPackage));
             testchart.Add(new MemChart(Dispatcher, this.chart_mem, selectedPackage));
             testchart.Add(new CpuChart(Dispatcher, this.chart_cpu, selectedPackage));
@@ -113,7 +120,10 @@ namespace Chinchilla {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            if (selectedPackage.Count == 0) {
+            if (selectedPackage.Count == 0&&
+                (checkBox1.IsChecked == true || 
+                checkBox2.IsChecked == true || 
+                checkBox3.IsChecked == true)) {
                 MessageBox.Show("至少选择1个包监测", "提示");
             } else if (selectedPackage.Count > 5) {
                 MessageBox.Show("最多选择5个包监测", "提示");

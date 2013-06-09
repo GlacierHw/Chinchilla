@@ -25,11 +25,11 @@ using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
 namespace Chinchilla {
     class Basechart  {
         private String charttype = "";
-        protected bool running = true;
+        protected bool running = false;
         protected ChartPlotter chart;
         private DispatcherTimer timerSine;
         protected double t = 0;
-        private bool testlock = false;
+        protected bool testlock = false;
         protected Dispatcher disp;
         private String package;
         private String uid = "";
@@ -40,7 +40,7 @@ namespace Chinchilla {
         public delegate void DeleFunc();
         protected System.Timers.Timer aTimer;
         protected List<Color> colorpool = new List<Color>();
-        private int linenum = 0;
+        protected int linenum = 0;
         protected FollowWidthRestriction msr = new FollowWidthRestriction();
         protected Thread newThread;
         public double CurrentData
@@ -67,7 +67,7 @@ namespace Chinchilla {
             //chart.Legend.LegendLeft = 10.0;
             chart.MouseMove += new MouseEventHandler(chart_MouseMove);
             chart.MouseLeave += new MouseEventHandler(chart_MouseLeave);
-            //chart.Legend.Visibility = auto;
+            chart.LegendVisibility = Visibility.Hidden; 
             //pkglist = packagelist;
             //datalist = new Dictionary<string, ObservableDataSource<Point>>();
             ThreadStart ts = new ThreadStart(asyncProcData);
@@ -87,7 +87,7 @@ namespace Chinchilla {
             //pkglist.Clear();
             aTimer.Stop();
             pkglist = new Dictionary<string,string>(packagelist);
-            initChart();
+            this.initChart();
             aTimer.Start();
         }
         public virtual void asyncProcData() {
@@ -101,7 +101,7 @@ namespace Chinchilla {
             aTimer.Start();       
         }
 
-        public void initChart() {
+        public virtual void initChart() {
             clearLines();
             datalist.Clear();
             listgraph.Clear();

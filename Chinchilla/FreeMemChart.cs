@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Threading;
 using Microsoft.Research.DynamicDataDisplay;
 using System.Text.RegularExpressions;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Windows;
 
 namespace Chinchilla {
     class FreeMemChart : Basechart {
@@ -52,6 +54,28 @@ namespace Chinchilla {
             }
 
             return memdata;
+        }
+
+        public override void initChart() {
+            
+            base.clearLines();
+            datalist.Clear();
+            listgraph.Clear();
+            testlock = false;
+            t = 0;
+            
+        }
+
+        public override void updatechart(Dictionary<string, string> packagelist) {
+            
+            //pkglist.Clear();
+            aTimer.Stop();
+            pkglist = new Dictionary<string, string>(packagelist);
+            this.initChart();
+            string lineName = "系统空闲内存";
+            datalist.Add(lineName, new ObservableDataSource<Point>());
+            listgraph.Add(chart.AddLineGraph(datalist[lineName], colorpool[linenum++], 2, lineName));//Color.FromRgb(72, 118, 255)
+            aTimer.Start();
         }
 
         public FreeMemChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)

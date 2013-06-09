@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Chinchilla {
     class UpdateManager {
@@ -23,21 +24,26 @@ namespace Chinchilla {
             dc.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(dc_DownloadFileCompleted);
         }
 
-        public void autoupdate() {           
-            try {
-                dc.DownloadFileAsync(new Uri(@"\\172.22.137.242\易平台\02.团队\04.QA\EVA\version.cfg"), "check_version.cfg","versionfile");
-                            
-            } catch (System.Exception ex) {
-                MessageBox.Show("更新失败！", "Sorry");
-            }
-            try {
-                //File.Copy("check_version.txt", "version.txt", true);
-            } catch { }
-            try {
-                //startMain();
-            } catch (System.Exception ex) {
-            }
 
+
+        public void autoupdate() {
+           /* if (flag.ToString().Equals("start")) {
+                ParameterizedThreadStart ts = new ParameterizedThreadStart(autoupdate);
+                //char[] a = "wtf";
+                Thread newThread = new Thread(ts);
+                newThread.Start("wtf");
+            } else {*/
+                try {
+                    dc.DownloadFileAsync(new Uri(@"\\172.22.137.242\易平台\02.团队\04.QA\EVA\version.cfg"), "check_version.cfg", "versionfile");
+
+                } catch (System.Exception ex) {
+                    MessageBox.Show("更新失败！", "Sorry");
+                }
+                try {
+                    //File.Copy("check_version.txt", "version.txt", true);
+                } catch { }
+         
+           // }
         }
 
         private void  dc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
