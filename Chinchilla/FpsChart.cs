@@ -125,6 +125,7 @@ namespace Chinchilla
 
             if (proc != null && !proc.HasExited)
                 proc.Kill();
+            datalist["帧率"].Collection.Clear();
             getDiffThread = new Thread(ts);
             getDiffThread.SetApartmentState(ApartmentState.STA);
             getDiffThread.Start();
