@@ -25,7 +25,7 @@ using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
 namespace Chinchilla {
     class Basechart  {
         private String charttype = "";
-        protected bool running = false;
+        protected bool running = true;
         protected ChartPlotter chart;
         private DispatcherTimer timerSine;
         protected double t = 0;
@@ -63,6 +63,7 @@ namespace Chinchilla {
             chart = newchart;
             msr.Width = 300;
             this.chart.Viewport.Restrictions.Add(msr);
+            //chart.MainVerticalAxis.
             chart.FitToView();
             //chart.Legend.LegendLeft = 10.0;
             chart.MouseMove += new MouseEventHandler(chart_MouseMove);
@@ -89,6 +90,8 @@ namespace Chinchilla {
             pkglist = new Dictionary<string,string>(packagelist);
             this.initChart();
             aTimer.Start();
+         
+          
         }
         public virtual void asyncProcData() {
          

@@ -197,9 +197,12 @@ namespace Chinchilla {
             if (this.testchart.Count > 0) {
                 this.label_cpu.Content = "平均值:" + ((CpuChart)this.testchart[2]).AvgData.ToString("0") + "%";
                 this.label_mem.Content = "平均值:" + ((MemChart)this.testchart[1]).AvgData.ToString("0.000") + "MB";
+                this.label_freemem.Content = "平均值:" + ((FreeMemChart)this.testchart[4]).AvgData.ToString("0.000") + "MB";
 
                 this.label_cpu_max.Content = "最大值:" + ((CpuChart)this.testchart[2]).MaxData.ToString("0") + "%";
                 this.label_mem_max.Content = "最大值:" + ((MemChart)this.testchart[1]).MaxData.ToString("0.000") + "MB";
+                this.label_freemem_min.Content = "最小值:" + ((FreeMemChart)this.testchart[4]).MinData.ToString("0.000") + "MB";
+
             }
         }
 

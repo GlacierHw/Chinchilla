@@ -11,6 +11,7 @@ using System.Windows;
 namespace Chinchilla {
     class FreeMemChart : Basechart {
         public String charttype = "系统空闲";
+        //protected bool running = false;
         private double avgData;
         public double AvgData {
             get {
@@ -18,11 +19,11 @@ namespace Chinchilla {
             }
         }
 
-        private double maxData;
+        private double minData;
 
-        public double MaxData {
+        public double MinData {
             get {
-                return this.maxData;
+                return this.minData;
             }
         }
 
@@ -42,14 +43,14 @@ namespace Chinchilla {
             this.currentData = memdata;
             if (this.datalist.Count != 1) {
                 this.avgData = 0;
-                this.maxData = 0;
+                this.minData = 0;
             } else {
                 foreach (var value in this.datalist.Values) {
                     int count = value.Collection.Count;
                     this.avgData = (this.avgData * count + memdata) / (count + 1);
                 }
-                if (memdata >= this.maxData) {
-                    this.maxData = memdata;
+                if (memdata <= this.minData || this.minData == 0) {
+                    this.minData = memdata;
                 }
             }
 
