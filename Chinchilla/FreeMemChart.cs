@@ -31,9 +31,11 @@ namespace Chinchilla {
             double memdata = 0;
             string meminfo;
             //Executecmd.ExecuteCommandSync("adb shell dumpsys meminfo " + package, out meminfo);
-            Executecmd.ExecuteCommandSync("adb shell procrank", out meminfo);
+            //Executecmd.ExecuteCommandSync("adb shell procrank", out meminfo);
+            Executecmd.ExecuteCommandSync("adb shell cat /proc/meminfo", out meminfo);
             //return 100.0;
-            Regex memReg = new Regex(@"\s*(\d*)K free,\s*(\d*)K buffers,\s*(\d*)K cached");
+            //Regex memReg = new Regex(@"\s*(\d*)K free,\s*(\d*)K buffers,\s*(\d*)K cached");
+            Regex memReg = new Regex(@"\s*MemFree:\s*(\d*)\s*kB\s*Buffers:\s*(\d*)\s*kB\s*Cached:\s*(\d*)\skB\s*");
             Match memM = memReg.Match(meminfo);
 
             if (memM.Groups.Count > 1) {

@@ -125,7 +125,7 @@ namespace Chinchilla {
             try {
                 //if (proc != null)
                 //    proc.Kill();
-                string commandarg = "shell /data/local/save 15";
+                string commandarg = "shell /data/local/tmp/save 15";
                 System.Diagnostics.ProcessStartInfo procStartInfo =
                     new System.Diagnostics.ProcessStartInfo("adb", commandarg);
 

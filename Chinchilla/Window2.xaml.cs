@@ -28,6 +28,8 @@ namespace Chinchilla {
         //private DispatcherTimer timerSine;
         public delegate void DeleFunc();
         private ThresholdSetting thresholdSettingWindow;
+        private Thread newThread;
+        private Thread myThread;
 
         public Window2() {
             InitializeComponent();
@@ -40,13 +42,13 @@ namespace Chinchilla {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             ThreadStart tss = new ThreadStart(checkupdate);
-            Thread myThread = new Thread(tss);
+            myThread = new Thread(tss);
             myThread.Start();
             
             initTextBox();
             //updateListview();
             ThreadStart ts = new ThreadStart(InitEnv);
-            Thread newThread = new Thread(ts);
+            newThread = new Thread(ts);
             newThread.Start();
 
             updateStausBar();
@@ -63,13 +65,13 @@ namespace Chinchilla {
 
         private void InitAdbEnv() {
             Executecmd.ExecuteCommandSync("adb wait-for-device", 0);
-            Executecmd.ExecuteCommandSync("adb root", 0);
+            //Executecmd.ExecuteCommandSync("adb root", 0);
             Executecmd.ExecuteCommandSync("adb wait-for-device", 0);
-            Executecmd.ExecuteCommandSync("adb remount", 0);
-            Executecmd.ExecuteCommandSync("adb push save /data/local/save", 0);
-            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save", 0); 
-            Executecmd.ExecuteCommandSync("adb push save_fps /data/local/save_fps", 0);
-            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/save_fps", 0);
+            //Executecmd.ExecuteCommandSync("adb remount", 0);
+            Executecmd.ExecuteCommandSync("adb push save /data/local/tmp/save", 0);
+            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/tmp/save", 0); 
+            Executecmd.ExecuteCommandSync("adb push save_fps /data/local/tmp/save_fps", 0);
+            Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/tmp/save_fps", 0);
         }
 
         void initTextBox() {
@@ -221,6 +223,10 @@ namespace Chinchilla {
         }
 
         private void Window_Closed(object sender, EventArgs e) {
+            if (myThread != null)
+                myThread.Abort();
+            if (newThread != null)
+                newThread.Abort();
             foreach (Basechart chart in testchart) {
                 chart.dispose();
             }

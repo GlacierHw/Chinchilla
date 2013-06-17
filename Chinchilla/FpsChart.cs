@@ -139,7 +139,7 @@ namespace Chinchilla
                 //if (proc != null)
                 //    proc.Kill();
                 
-                string commandarg = "shell /data/local/save_fps";
+                string commandarg = "shell /data/local/tmp/save_fps";
                 System.Diagnostics.ProcessStartInfo procStartInfo =
                     new System.Diagnostics.ProcessStartInfo("adb", commandarg);
 

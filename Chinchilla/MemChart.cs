@@ -40,10 +40,14 @@ namespace Chinchilla {
         public override double getData(string package) {
             double memdata = 0;
             string meminfo;
-            //Executecmd.ExecuteCommandSync("adb shell dumpsys meminfo " + package, out meminfo);
-            Executecmd.ExecuteCommandSync("adb shell procrank", out meminfo);
+
+            if (package == "system_server")
+                package = "system";
+            Executecmd.ExecuteCommandSync("adb shell dumpsys meminfo " + package, out meminfo);
+            //Executecmd.ExecuteCommandSync("adb shell procrank", out meminfo);
             //return 100.0;
-            Regex memReg = new Regex(@"\s*(\d*)K\s*\d*K\s*" + package + @"\s*");
+            //Regex memReg = new Regex(@"\s*(\d*)K\s*\d*K\s*" + package + @"\s*");
+            Regex memReg = new Regex(@"\s*TOTAL\s*(\d*)\s*");
             Match memM = memReg.Match(meminfo);
             if (memM.Groups.Count > 1) {
   
