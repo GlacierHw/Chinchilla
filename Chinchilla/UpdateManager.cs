@@ -58,11 +58,13 @@ namespace Chinchilla {
                         if (result == MessageBoxResult.Yes) {
                             try {
 
-                                Process[] thisProc = Process.GetProcessesByName ("Chinchilla.exe") ;
+                                Process[] thisProc = Process.GetProcessesByName ("Chinchilla") ;
                                 if (thisProc.Length > 0) {
                                     for (int i = 0; i < thisProc.Length; i++) {
-                                        if (thisProc[i].CloseMainWindow()) {
+                                        try{
                                             thisProc[i].Kill();
+                                        }
+                                        catch{
                                         }
                                     }
                                 }
