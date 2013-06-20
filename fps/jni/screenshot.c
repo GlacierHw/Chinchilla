@@ -13,12 +13,11 @@
 #include <unistd.h>
 #include "./myfb.h"
 #include <sys/time.h>
-#include<math.h>
 
 #ifndef WIN32
 //-------------------------------------------------------------------
 
-int screen_shot()
+int screen_shot(int intervaltime)
 {
 	struct FB * fb = NULL;
 	fb = fb_create();
@@ -34,79 +33,64 @@ int screen_shot()
 		int virtual_size = fb_virtual_size(fb);
 		
 		printf("%d,%d,%d,%d,%d,%d\n",width,height,bpp,size,offset_fb,virtual_size);
-		void * framebit = fb_bits(fb);
+		void * framebit = fb_bits(fb);	
 		
 		struct timeval start, end;
 		gettimeofday( &start, NULL );
 		int offset = 80*width*bpp;
-		int intervaltime = 15;
 		int intervaltime_u = intervaltime*1000;
 		printf("%d\n",intervaltime_u);
 		
-		void * currentImageRaw = framebit+offset;
-		void * preImageRaw = framebit+offset+size-offset_fb;
-		int compareSize = size-offset-offset;
-		
-		int refreshFlag = 1;
-		int count = 0;
-		char diffBuffer[60] ;
-		memset(diffBuffer,0,60);
-		int startTime = 0;
+		void * currentImageRaw;
+		void * preImageRaw;
+		int compareSize = size-offset;
+        char * imgbuffer = (char *)malloc(size);
+		//framebit = fb_bits(fb);	
+		//currentImageRaw = framebit + offset;
+		//int frameoffset = fb_offset(fb);
+        //memcpy(imgbuffer,currentImageRaw,size - offset);
 		while(1)
 		{
 			usleep(intervaltime_u);
 			gettimeofday( &end, NULL );
 			int timeuse = 1000000 * ( end.tv_sec - start.tv_sec ) + end.tv_usec - start.tv_usec;
-			int currentTime = timeuse/1000;
-			//printf("time: %d :::::", currentTime);
-			
-			currentImageRaw = framebit+offset;
-			preImageRaw = framebit+offset+size;
-			int diffpercent = compareImage(currentImageRaw,preImageRaw,compareSize);	
-			//printf("diff: %d :::::\n",diffpercent);
-			
-			diffBuffer[count] =  (char)diffpercent;
-			int spanTime = currentTime-startTime;
-			if(spanTime>1000){
-				int frames = getChangeBuffer(diffBuffer,60);
-				printf("time: %d :::::", currentTime);
-				printf("frames: %d :::::\n", frames);
-				count = 0;
-				startTime = currentTime;
-				memset(diffBuffer,0,60);
-			}
-			count++;
+			printf("time: %d :::::", timeuse/1000);
+			framebit = fb_bits(fb);	
+			int frameoffset = fb_offset(fb);
+			printf("offset: %d :::::", frameoffset);
+			currentImageRaw = framebit + offset + frameoffset;
+			//preImageRaw = framebit+offset+size;
+			int diffpercent = compareImage(imgbuffer + offset,currentImageRaw,compareSize);	
+			printf("diff: %d :::::\n",diffpercent);
 		}
 		fb_destory(fb);
+        free(imgbuffer);
+
 	}
 	return 0;
 }
 
-int getChangeBuffer(char *buffer, int size){
-	int count = 0;
-	while(size-- >=0){		
-		if(buffer[size]!=0)
-			count++;
+int compareImage(void *dest,const void *src,int size){
+    int * f = (int *)dest;
+	int * r = (int *)src;
+    int result = size;
+	int fl;
+	int rl;
+	int count = size/4;
+	int step = 53;
+	while(*f == *r && count > 0){
+		count -= step;
+		f += step;
+		r += step;
 	}
-	return count;
-}
-
-int compareImage(void *dest,void *src,int size){
-    char * f = (char *)dest;
-	char * r = (char *)src;
-	char fl;
-	char rl;
-	int count = size;
-	int step = 133;
-	while(count > 0){
-		if ((fl=*f)!=(rl=*r)){
-			return abs(fl-rl);
-		}
-		count = count - step;
-		f = f + step;
-		r = r + step;
-	}
-	return 0;
+    result = *f - *r;
+    while(count > 0) {
+        *f = *r;
+		count -= step;
+		f += step;
+		r += step;
+    }
+	return result;
 }
 
 int copyImage(void *dest,void *src,int size){
