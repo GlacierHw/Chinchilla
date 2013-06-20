@@ -25,3 +25,17 @@ C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientSta
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\ResGen.write.1.tlog
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.exe
 C:\Users\chunleiqa\Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.pdb
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartChinchillaStarter.exe.config
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartChinchillaStarter.exe
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\bin\Release\SmartChinchillaStarter.pdb
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\Window1.baml
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\Window1.g.cs
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\App.g.cs
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter_MarkupCompile.cache
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.g.resources
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartClientStarter.Properties.Resources.resources
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.exe
+C:\Documents and Settings\dengchengliang\My Documents\GitHub\Chinchilla\SmartClientStarter\SmartClientStarter\obj\Release\SmartChinchillaStarter.pdb

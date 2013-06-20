@@ -90,6 +90,7 @@
     <Compile Include="DatausageChart.cs" />
     <Compile Include="DeviceInfoHelper.cs" />
     <Compile Include="Executecmd.cs" />
+    <Compile Include="FrameValueTextMarker.cs" />
     <Compile Include="KpiChart.cs" />
     <Compile Include="MemChart.cs" />
     <Compile Include="ThresholdSetting.xaml.cs">

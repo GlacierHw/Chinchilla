@@ -36,6 +36,7 @@ namespace Chinchilla {
         public delegate void DeleFunc(double value);
         public delegate void DeleRect(double value, double width);
         ObservableDataSource<Point> markerPoints = new ObservableDataSource<Point>();
+        ObservableDataSource<Point> framePoints = new ObservableDataSource<Point>();
 
         public KpiChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist) {
@@ -75,6 +76,12 @@ namespace Chinchilla {
             XValueTextMarker ctm = new XValueTextMarker(this.chart.Viewport);
             mpg.Marker = ctm;
             this.chart.Children.Add(mpg);
+
+            MarkerPointsGraph fmpg = new MarkerPointsGraph(framePoints);
+            FrameValueTextMarker ftm = new FrameValueTextMarker(this.chart.Viewport);
+            fmpg.Marker = ftm;
+            this.chart.Children.Add(fmpg);
+
             listgraph.Add(chart.AddLineGraph(datalist["屏幕变化率"], Colors.Blue, 2, "屏幕变化率"));//Color.FromRgb(72, 118, 255)
 
             ts = new ThreadStart(getScreenDiff);
@@ -193,6 +200,16 @@ namespace Chinchilla {
                                     this.markerPoints.AppendAsync(disp, new Point(this.datalist["屏幕变化率"].Collection[startIndex].X, endx - startx));
                                     Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,
                                                          new DeleRect(addRect), endx, endx - startx);
+                                    
+                                    int frame = 0;
+                                    for (int i = startIndex; i <= endIndex; i++)
+                                    {
+                                        if (this.datalist["屏幕变化率"].Collection[i].Y > 0)
+                                        {
+                                            frame++;
+                                        }
+                                    }
+                                    this.framePoints.AppendAsync(disp, new Point(this.datalist["屏幕变化率"].Collection[startIndex].X, frame / (endx - startx)));
 
                                     startIndex = 0;
                                     endIndex = 0;
