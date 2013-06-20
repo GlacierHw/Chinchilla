@@ -47,16 +47,30 @@ namespace Chinchilla {
             return;
         }
 
-        private void clearVerticalLine(ChartPlotter chart) {
+        private void clearVerticalLine() {
             List<VerticalLine> vlines = new List<VerticalLine>();
-            foreach (var child in chart.Children) {
+            foreach (var child in this.chart.Children) {
                 if (child is VerticalLine) {
                     vlines.Add(child as VerticalLine);
                 }
             }
 
             foreach (var child in vlines) {
-                chart.Children.Remove(child);
+                this.chart.Children.Remove(child);
+            }
+
+            
+            List<RectangleHighlight> rectangleHighlight = new List<RectangleHighlight>();
+            foreach (var child in this.chart.Children) {
+                if (child is RectangleHighlight)
+                {
+                    rectangleHighlight.Add(child as RectangleHighlight);
+                }
+            }
+
+            foreach (var child in rectangleHighlight)
+            {
+                this.chart.Children.Remove(child);
             }
 
         }
@@ -122,6 +136,7 @@ namespace Chinchilla {
 
             if (proc != null && !proc.HasExited)
                 proc.Kill();
+            clearKpiInfo();
             getDiffThread = new Thread(ts);
             getDiffThread.SetApartmentState(ApartmentState.STA);
             getDiffThread.Start();
@@ -279,6 +294,14 @@ namespace Chinchilla {
             rh.Stroke = new SolidColorBrush(Colors.OrangeRed);
             rh.StrokeThickness = 2;
             this.chart.Children.Add(rh);
+        }
+
+        private void clearKpiInfo()
+        {
+            this.framePoints.Collection.Clear();
+            this.markerPoints.Collection.Clear();
+            this.datalist["屏幕变化率"].Collection.Clear();
+            clearVerticalLine();
         }
     }
 }
