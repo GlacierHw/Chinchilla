@@ -50,6 +50,8 @@ namespace Chinchilla {
                 return -1;
             }
 
+            if (cpudata > 100)
+                return -1;
             this.currentData = cpudata;
 
             if (this.datalist.Count != 1) {

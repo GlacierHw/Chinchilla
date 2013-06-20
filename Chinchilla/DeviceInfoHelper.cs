@@ -62,6 +62,9 @@ namespace Chinchilla
             if (pkginfo.Count > 0)
             {
                 pkginfo.Add("system_server", "10000");
+                pkginfo.Add("com.baidu.bsf.service", "10000");
+                pkginfo.Add("com.baidu.bsf.system", "10000");
+                pkginfo.Add("com.baidu.bsf.system:pushservice_v1", "10000");
             }
             /*
             while (strLine != null)

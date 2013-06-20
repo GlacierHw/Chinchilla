@@ -56,20 +56,21 @@ namespace Chinchilla {
                         MessageBoxResult result = MessageBox.Show("是否立即更新?",
   "有新更新可用", MessageBoxButton.YesNo);
                         if (result == MessageBoxResult.Yes) {
-                            try {
-
-                                Process[] thisProc = Process.GetProcessesByName ("Chinchilla.exe") ;
+                            /*
+                                Process[] thisProc = Process.GetProcessesByName ("Chinchilla") ;
                                 if (thisProc.Length > 0) {
                                     for (int i = 0; i < thisProc.Length; i++) {
-                                        if (thisProc[i].CloseMainWindow()) {
-                                            thisProc[i].Kill();
+                                        try{
+                                            if (thisProc[i].CloseMainWindow())
+                                                thisProc[i].Kill();
+                                        }
+                                        catch{
                                         }
                                     }
                                 }
-
-                                File.Copy("Chinchilla.exe", "ChinchillaMirror.exe", true);
-                                System.Diagnostics.Process.Start("ChinchillaMirror.exe", "update");        
-                            } catch { }
+                            */
+                                File.Copy("Chinchilla.exe", "Chinchimirror.exe", true);
+                                System.Diagnostics.Process.Start("Chinchimirror.exe", "update");        
                             //((Window2)wnd).Close();
                             Environment.Exit(0);
                         } else if (result == MessageBoxResult.No) {

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using System.IO;
+using System.Diagnostics;
 
 namespace Chinchilla {
     /// <summary>
@@ -18,6 +19,18 @@ namespace Chinchilla {
                 //window2.checkupdate();
                 //window2.showEx(e.Args[0]);
                 //MessageBox.Show("mirror window");
+
+                Process[] thisProc = Process.GetProcessesByName ("Chinchilla") ;
+                if (thisProc.Length > 0) {
+                    for (int i = 0; i < thisProc.Length; i++) {
+                        try{
+                            if (thisProc[i].CloseMainWindow())
+                                thisProc[i].Kill();
+                        }
+                        catch{
+                        }
+                    }
+                }
                 UpdateManager um = new UpdateManager(this);
                 um.updateAllFile();
                 //MessageBox.Show(e.Args[0]);  
