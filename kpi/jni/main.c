@@ -13,10 +13,10 @@
 
 int main(int argc, char * argv[])
 {
-	//int intervaltime = atoi(argv[1]);
+	int intervaltime = atoi(argv[1]);
 	
 	//printf("main enter!%d %d\n",intervaltime,argc);
-	screen_shot();
+	screen_shot(intervaltime);
 	
 	//printf("main exit!\n");
 	

@@ -29,7 +29,7 @@ struct FB * fb_create(void);
 void fb_destory(struct FB *fb);
 
 int save_bmp(const char * path, int w, int h, void * pdata, int bpp);
-int screen_shot();
+int screen_shot(int intervaltime);
 
 #ifdef __cplusplus
 };
