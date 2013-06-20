@@ -56,11 +56,11 @@ int screen_shot(int intervaltime)
 			int timeuse = 1000000 * ( end.tv_sec - start.tv_sec ) + end.tv_usec - start.tv_usec;
 			printf("time: %d :::::", timeuse/1000);
 			framebit = fb_bits(fb);	
-			int frameoffset = fb_offset(fb);
-			printf("offset: %d :::::", frameoffset);
-			currentImageRaw = framebit + offset + frameoffset;
+			//int frameoffset = fb_offset(fb);
+			//printf("offset: %d :::::", frameoffset);
+			currentImageRaw = framebit + offset;
 			//preImageRaw = framebit+offset+size;
-			int diffpercent = compareImage(imgbuffer + offset,currentImageRaw,compareSize);	
+			int diffpercent = compareImage(imgbuffer,currentImageRaw,compareSize);	
 			printf("diff: %d :::::\n",diffpercent);
 		}
 		fb_destory(fb);
@@ -73,22 +73,29 @@ int screen_shot(int intervaltime)
 int compareImage(void *dest,const void *src,int size){
     int * f = (int *)dest;
 	int * r = (int *)src;
-    int result = size;
+    int result = 0;
 	int fl;
-	int rl;
-	int count = size/4;
+	int rl;	
+	int count = size/4-1;
 	int step = 53;
+	f = f + count;
+	r = r + count;
 	while(*f == *r && count > 0){
 		count -= step;
-		f += step;
-		r += step;
+		if(count>0){
+			f -= step;
+			r -= step;
+		}
 	}
-    result = *f - *r;
+	if(*f != *r)
+		result = (*f - *r)<<25 ? (*f - *r)<<25 : 10;
     while(count > 0) {
         *f = *r;
 		count -= step;
-		f += step;
-		r += step;
+		if(count > 0){
+			f -= step;
+			r -= step;
+		}
     }
 	return result;
 }

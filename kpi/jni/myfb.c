@@ -73,6 +73,8 @@ void * fb_bits(struct FB *fb)
 {
 	unsigned short * bits = NULL;
 	if (fb) {
+		fb->fd = open("/dev/graphics/fb0", O_RDONLY);
+		ioctl(fb->fd, FBIOGET_VSCREENINFO, &fb->vi);
 		int offset, bytespp;
 		bytespp = fb->vi.bits_per_pixel / 8;
 
@@ -83,8 +85,8 @@ void * fb_bits(struct FB *fb)
 		* to each line, not just once at the beginning */
 		offset = fb->vi.xoffset * bytespp;
 		offset += fb->vi.xres * fb->vi.yoffset * bytespp;
-		//bits = fb->bits + offset / sizeof(*fb->bits);
-		bits = fb->bits;
+		bits = fb->bits + offset/sizeof(*fb->bits);
+		//bits = fb->bits;
 	}
 	return bits;
 }
@@ -92,6 +94,8 @@ void * fb_bits(struct FB *fb)
 int fb_offset(struct FB *fb)
 {
 	if (fb) {
+		fb->fd = open("/dev/graphics/fb0", O_RDONLY);
+		ioctl(fb->fd, FBIOGET_VSCREENINFO, &fb->vi);
 		int offset, bytespp;
 		bytespp = fb->vi.bits_per_pixel / 8;
 
@@ -102,7 +106,7 @@ int fb_offset(struct FB *fb)
 		* to each line, not just once at the beginning */
 		offset = fb->vi.xoffset * bytespp;
 		offset += fb->vi.xres * fb->vi.yoffset * bytespp;
-		offset = offset / sizeof(*fb->bits);
+		offset = offset/sizeof(*fb->bits);
 		return offset;
 	}
 }

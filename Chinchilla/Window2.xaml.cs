@@ -98,6 +98,7 @@ namespace Chinchilla {
                                                          new DeleFunc(updateListviewDelegate));
                     Thread.Sleep(2000);
                 } catch (System.Exception ex) {
+                    MessageBox.Show(ex.ToString());
                 }
             }
         }

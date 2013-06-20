@@ -47,7 +47,7 @@ namespace Chinchilla
             MatchCollection mMatches = reg.Matches(allpkginfo);
             foreach (Match m in mMatches)
             {
-                if (m.Groups.Count > 2 && Convert.ToInt32(m.Groups[2].ToString()) >10000)
+                if (m.Groups.Count > 2 && Convert.ToInt32(m.Groups[2].ToString()) >=10000)
                 {
                     try
                     {
@@ -61,10 +61,17 @@ namespace Chinchilla
             }
             if (pkginfo.Count > 0)
             {
-                pkginfo.Add("system_server", "10000");
-                pkginfo.Add("com.baidu.bsf.service", "10000");
-                pkginfo.Add("com.baidu.bsf.system", "10000");
-                pkginfo.Add("com.baidu.bsf.system:pushservice_v1", "10000");
+                try
+                {
+                    pkginfo.Add("system_server", "10000");
+                    //pkginfo.Add("com.baidu.bsf.service", "10000");
+                    pkginfo.Add("com.baidu.bsf.system", "10000");
+                    pkginfo.Add("com.baidu.bsf.system:pushservice_v1", "10000");
+                }
+                catch
+                {
+                    //eat exception
+                }
             }
             /*
             while (strLine != null)
