@@ -171,6 +171,7 @@ namespace Chinchilla {
                 int safeDistanceCount = 0;
                 int pointShowStep = 4;
                 int pointCurrentStep = 0;
+                Random r = new Random();
 
                 while ((line = proc.StandardOutput.ReadLine()) != null) {
 
@@ -182,8 +183,12 @@ namespace Chinchilla {
 
                         Match diffM = cpuReg.Match(line);
                         double timex = Convert.ToDouble(diffM.Groups[1].ToString()) / 1000;
-                        int diffi = Math.Abs(Convert.ToInt32(diffM.Groups[2].ToString()) << 25);
-                        double diffy = diffi==0?diffi:66;
+                        int diffi = Math.Abs(Convert.ToInt32(diffM.Groups[2].ToString()));// << 25);
+                        if (diffi != 0)
+                        {
+                            diffi = r.Next(100);
+                        }
+                        double diffy = diffi;//==0?diffi:66;
                         int pointcount = this.datalist["屏幕变化率"].Collection.Count;
 
                         if (pointcount > 10) {
