@@ -63,7 +63,7 @@ int screen_shot()
 			gettimeofday( &end, NULL );
 			int timeuse = 1000000 * ( end.tv_sec - start.tv_sec ) + end.tv_usec - start.tv_usec;
 			int currentTime = timeuse/1000;
-			printf("time: %d :::::", currentTime);
+			//printf("time: %d :::::", currentTime);
 			
 			framebit = fb_bits(fb);	
 			//int frameoffset = fb_offset(fb);
@@ -71,7 +71,7 @@ int screen_shot()
 			currentImageRaw = framebit + offset;
 			//preImageRaw = framebit+offset+size;
 			int diffpercent = compareImage(imgbuffer,currentImageRaw,compareSize);	
-			printf("diff: %d :::::\n",diffpercent);
+			//printf("diff: %d :::::\n",diffpercent);
 			
 			diffBuffer[count] = diffpercent;
 			int spanTime = currentTime-startTime;
