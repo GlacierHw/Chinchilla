@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chinchilla", "Chinchilla\Chinchilla.csproj", "{ACA77089-026F-4A7F-A7F8-DE5838865532}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartClientStarter", "SmartClientStarter\SmartClientStarter\SmartClientStarter.csproj", "{B9847079-EEF3-4BAF-968F-DC2E723B4B3B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{ACA77089-026F-4A7F-A7F8-DE5838865532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACA77089-026F-4A7F-A7F8-DE5838865532}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACA77089-026F-4A7F-A7F8-DE5838865532}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9847079-EEF3-4BAF-968F-DC2E723B4B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9847079-EEF3-4BAF-968F-DC2E723B4B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9847079-EEF3-4BAF-968F-DC2E723B4B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9847079-EEF3-4BAF-968F-DC2E723B4B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
