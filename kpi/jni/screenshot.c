@@ -88,7 +88,7 @@ int compareImage(void *dest,const void *src,int size){
 		}
 	}
 	if(*f != *r)
-		result = (*f - *r)<<25 ? (*f - *r)<<25 : 10;
+		result = (*f - *r);//<<25 ? (*f - *r)<<25 : 10;
     while(count > 0) {
         *f = *r;
 		count -= step;

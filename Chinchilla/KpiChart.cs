@@ -182,7 +182,8 @@ namespace Chinchilla {
 
                         Match diffM = cpuReg.Match(line);
                         double timex = Convert.ToDouble(diffM.Groups[1].ToString()) / 1000;
-                        double diffy = Math.Abs(Convert.ToDouble(diffM.Groups[2].ToString()));
+                        int diffi = Math.Abs(Convert.ToInt32(diffM.Groups[2].ToString()) << 25);
+                        double diffy = diffi==0?diffi:66;
                         int pointcount = this.datalist["屏幕变化率"].Collection.Count;
 
                         if (pointcount > 10) {
@@ -238,7 +239,7 @@ namespace Chinchilla {
                         pointCurrentStep++;
                         if (pointShowStep < pointCurrentStep)
                         {
-                            this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66 : diffy));
+                            this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy));
                             pointCurrentStep = 0;
                         }
                         else
@@ -248,7 +249,7 @@ namespace Chinchilla {
                                 double lastvaluey = this.datalist["屏幕变化率"].Collection[pointcount - 1].Y;
                                 if (diffy != lastvaluey)
                                 {
-                                    this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy > 66 ? 66 : diffy));
+                                    this.datalist["屏幕变化率"].AppendAsync(disp, new Point(timex, diffy));
                                 }
                             }
                         }

@@ -40,7 +40,12 @@
             <Button Name="rectangle2"  Width="15" HorizontalAlignment="Left" Margin="0,-266,0,-207" Content=">"/>
         </Grid>
         <Grid DockPanel.Dock="Left" Visibility="Visible" Name="pacakgedock" MouseLeave="pacakgedock_MouseLeave">
-            <TextBox Height="25" Name="textBox1" Width="211"  VerticalAlignment="Top" GotKeyboardFocus ="cleanTooltips" TextChanged="textBox1_TextChanged" TextAlignment="Left" Padding="4" />
+            <Grid DockPanel.Dock="Top" Visibility="Visible" >
+                <TextBox Height="25" Name="textBox1" VerticalAlignment="Top" GotKeyboardFocus ="cleanTooltips" TextChanged="textBox1_TextChanged" TextAlignment="Left" Padding="4" Margin="0,0,36,0" Width="173" />
+                <Button Content="添加" Height="25" HorizontalAlignment="Right" Margin="0,0,0,0" Name="button1" VerticalAlignment="Top" Width="38" Click="button1_Click" />
+            </Grid>
+            <!--<TextBox Height="25" Name="textBox1" Width="155"  VerticalAlignment="Top" GotKeyboardFocus ="cleanTooltips" TextChanged="textBox1_TextChanged" TextAlignment="Left" Padding="4" />
+            <Button Name="addpackage"  Width="20" VerticalAlignment="Top" />-->
             <ListView Name="listView1" Width="211" SelectionMode="Multiple" SelectionChanged="listView1_SelectionChanged" Margin="0,24,0,0" Visibility="Visible" />
         </Grid>
         <!--Grid DockPanel.Dock="Left" Visibility="Collapsed" Name="pacakgebtndock"></Grid-->

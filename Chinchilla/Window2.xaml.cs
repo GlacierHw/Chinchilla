@@ -75,7 +75,7 @@ namespace Chinchilla {
         }
 
         void initTextBox() {
-            this.textBox1.Text = "输入包名搜索";
+            this.textBox1.Text = "输入包名搜索或添加";
             this.textBox1.Foreground = System.Windows.Media.Brushes.Gray;
             //this.textBox1.DataContextChanged += new DependencyPropertyChangedEventHandler(textBox1_DataContextChanged);
         }
@@ -283,7 +283,8 @@ namespace Chinchilla {
         }
 
         private void cleanTooltips(object sender, KeyboardFocusChangedEventArgs e) {
-            if (this.textBox1.Text.Equals("输入包名搜索")) {
+            if (this.textBox1.Text.Equals("输入包名搜索或添加"))
+            {
                 this.textBox1.Text = "";
                 this.textBox1.Foreground = System.Windows.Media.Brushes.Black;
             }
@@ -299,6 +300,23 @@ namespace Chinchilla {
         private void dockPanel2_MouseEnter(object sender, MouseEventArgs e) {
             pacakgedock.Visibility = System.Windows.Visibility.Visible;
             dockPanel2.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            if (!this.textBox1.Text.Equals("输入包名搜索或添加"))
+            {
+                string packagename = this.textBox1.Text;
+                this.pkginfo.Add(packagename,"10000");
+                this.listView1.Items.Clear();
+                foreach (KeyValuePair<string, string> pkg in pkginfo)
+                {
+                    if (pkg.Key.IndexOf(this.textBox1.Text) >= 0)
+                    {
+                        this.listView1.Items.Add(pkg.Key);
+                    }
+                }
+            }
         }
     }
 }
