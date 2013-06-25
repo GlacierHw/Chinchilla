@@ -52,12 +52,17 @@ namespace Chinchilla {
             if (memM.Groups.Count > 1) {
   
                 memdata = Convert.ToDouble(memM.Groups[1].ToString()) / 1024;
-            } else if (!meminfo.Contains("PSS")) {
+            }
+            else if (meminfo.Contains("No process found"))
+            {
+                memdata = 0;
+            }
+            else if (!meminfo.Contains("PSS"))
+            {
                 return -1;
             }
 
             this.currentData = memdata;
-
 
             if (this.datalist.Count != 1) {
                 this.avgData = 0;
