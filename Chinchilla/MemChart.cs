@@ -53,7 +53,7 @@ namespace Chinchilla {
   
                 memdata = Convert.ToDouble(memM.Groups[1].ToString()) / 1024;
             }
-            else if (meminfo.Contains("No process found"))
+            else if (meminfo.Contains(package))
             {
                 memdata = 0;
             }
