@@ -49,6 +49,8 @@ int screen_shot(int intervaltime)
 		//currentImageRaw = framebit + offset;
 		//int frameoffset = fb_offset(fb);
         //memcpy(imgbuffer,currentImageRaw,size - offset);
+		int step = 53;
+		int totalpoint = width*height/step;
 		while(1)
 		{
 			usleep(intervaltime_u);
@@ -60,7 +62,7 @@ int screen_shot(int intervaltime)
 			//printf("offset: %d :::::", frameoffset);
 			currentImageRaw = framebit + offset;
 			//preImageRaw = framebit+offset+size;
-			int diffpercent = compareImage(imgbuffer,currentImageRaw,compareSize);	
+			int diffpercent = compareImage(imgbuffer,currentImageRaw,compareSize,step,totalpoint);	
 			printf("diff: %d :::::\n",diffpercent);
 		}
 		fb_destory(fb);
@@ -70,23 +72,29 @@ int screen_shot(int intervaltime)
 	return 0;
 }
 
-int compareImage(void *dest,const void *src,int size){
+int compareImage(void *dest,const void *src,int size,int step, int totalpoint){
     int * f = (int *)dest;
 	int * r = (int *)src;
     int result = 0;
 	int fl;
 	int rl;	
 	int count = size/4-1;
-	int step = 53;
+	//int step = 53;
 	f = f + count;
 	r = r + count;
-	while(*f == *r && count > 0){
+	int diff = 0;
+	while(count > 0){
+		if(*f != *r){
+			*f = *r;
+			diff++;
+		}
 		count -= step;
 		if(count>0){
 			f -= step;
 			r -= step;
 		}
 	}
+	/*
 	if(*f != *r)
 		result = (*f - *r);//<<25 ? (*f - *r)<<25 : 10;
     while(count > 0) {
@@ -97,7 +105,8 @@ int compareImage(void *dest,const void *src,int size){
 			r -= step;
 		}
     }
-	return result;
+	*/
+	return diff*100/totalpoint;
 }
 
 int copyImage(void *dest,void *src,int size){
