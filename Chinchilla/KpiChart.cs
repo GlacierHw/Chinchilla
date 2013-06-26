@@ -184,10 +184,10 @@ namespace Chinchilla {
                         Match diffM = cpuReg.Match(line);
                         double timex = Convert.ToDouble(diffM.Groups[1].ToString()) / 1000;
                         int diffi = Math.Abs(Convert.ToInt32(diffM.Groups[2].ToString()));// << 25);
-                        if (diffi != 0)
-                        {
-                            diffi = r.Next(100);
-                        }
+                        //if (diffi != 0)
+                        //{
+                        //    diffi = r.Next(100);
+                        //}
                         double diffy = diffi;//==0?diffi:66;
                         int pointcount = this.datalist["屏幕变化率"].Collection.Count;
 
