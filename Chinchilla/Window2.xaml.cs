@@ -59,8 +59,10 @@ namespace Chinchilla {
             testchart.Add(new KpiChart(Dispatcher, this.chart_kpi, selectedPackage));
             testchart.Add(new FreeMemChart(Dispatcher, this.chart_freemem, selectedPackage));
             testchart.Add(new FpsChart(Dispatcher, this.chart_fps, selectedPackage));
+            testchart.Add(new PowerChart(Dispatcher, this.chart_power, selectedPackage));
             grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
             grid_fps.Visibility = System.Windows.Visibility.Collapsed;
+            grid_power.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void InitAdbEnv() {
@@ -162,6 +164,7 @@ namespace Chinchilla {
                 this.status_cpu.Content = "CPU:" + this.testchart[2].CurrentData + "%";
                 this.status_mem.Content = "内存:" + this.testchart[1].CurrentData.ToString("f2") + "MB";
                 this.status_fps.Content = "FPS:" + this.testchart[5].CurrentData.ToString();
+                this.status_power.Content = "电量:" + this.testchart[6].CurrentData.ToString()+"mA";
             }
             if (this.threValue.Count > 0) {
                 this.status_datausage_thre.Content = "阈值:" + this.threValue[0] + "KB";
@@ -188,7 +191,7 @@ namespace Chinchilla {
         private void updateLabel() {
             DispatcherTimer timerSine = new DispatcherTimer();
             timerSine.Tick += new EventHandler(updateLabelText);
-            timerSine.Interval = new TimeSpan(0, 0, 5);
+            timerSine.Interval = new TimeSpan(0, 0, 1);
             timerSine.Start();
 
         }
@@ -201,11 +204,12 @@ namespace Chinchilla {
                 this.label_cpu.Content = "平均值:" + ((CpuChart)this.testchart[2]).AvgData.ToString("0") + "%";
                 this.label_mem.Content = "平均值:" + ((MemChart)this.testchart[1]).AvgData.ToString("0.000") + "MB";
                 this.label_freemem.Content = "平均值:" + ((FreeMemChart)this.testchart[4]).AvgData.ToString("0.000") + "MB";
+                this.label_power.Content = "平均值:" + ((PowerChart)this.testchart[6]).AvgData.ToString("0.000") + "mA";
 
                 this.label_cpu_max.Content = "最大值:" + ((CpuChart)this.testchart[2]).MaxData.ToString("0") + "%";
                 this.label_mem_max.Content = "最大值:" + ((MemChart)this.testchart[1]).MaxData.ToString("0.000") + "MB";
                 this.label_freemem_min.Content = "最小值:" + ((FreeMemChart)this.testchart[4]).MinData.ToString("0.000") + "MB";
-
+                this.label_power_max.Content = "最大值:" + ((PowerChart)this.testchart[6]).MaxData.ToString("0.000") + "mA";
             }
         }
 
@@ -253,6 +257,9 @@ namespace Chinchilla {
                 } else if (sender.ToString().Contains("FPS")) {
                     ((FpsChart)testchart[5]).restart();
                     grid_fps.Visibility = System.Windows.Visibility.Visible;
+                }else if (sender.ToString().Contains("电量"))                {
+                    ((PowerChart)testchart[6]).restart();
+                    grid_power.Visibility = System.Windows.Visibility.Visible;
                 } else {
                 }
             } else if (((CheckBox)sender).IsChecked == false) {
@@ -271,13 +278,13 @@ namespace Chinchilla {
                 } else if (sender.ToString().Contains("KPI")) {
                     ((KpiChart)testchart[3]).stop();
                     grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
-                } else if (sender.ToString().Contains("KPI")) {
-                    ((KpiChart)testchart[3]).stop();
-                    grid_kpi.Visibility = System.Windows.Visibility.Collapsed;
                 } else if (sender.ToString().Contains("FPS")) {
                     ((FpsChart)testchart[5]).stop();
                     grid_fps.Visibility = System.Windows.Visibility.Collapsed;
-                } else {
+                } else if (sender.ToString().Contains("电量")) {
+                    ((PowerChart)testchart[6]).stop();
+                    grid_power.Visibility = System.Windows.Visibility.Collapsed;
+                }else {
                 }
             }
         }

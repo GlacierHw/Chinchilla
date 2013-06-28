@@ -21,7 +21,7 @@
                 <CheckBox Height="26" Name="checkBox5" Width="100" IsChecked="True" Click="checkBox_Checked">空闲内存监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox6" Width="100" IsChecked="False" Click="checkBox_Checked">FPS监控</CheckBox>
                 <CheckBox Height="26" Name="checkBox4" Width="100" IsChecked="False" Click="checkBox_Checked">KPI监控</CheckBox>
-
+                <CheckBox Height="26" Name="checkBox7" Width="100" IsChecked="False" Click="checkBox_Checked">电量监控</CheckBox>
             </ToolBar>
         </ToolBarPanel>
         <StatusBar Height="26" Name="statusBar1" Width="Auto" VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
@@ -34,6 +34,7 @@
             <StatusBarItem Name ="status_mem" Content="内存:" Width="Auto" />
             <StatusBarItem Name ="status_mem_thre" Content="阈值:" Width="Auto"/>
             <StatusBarItem Name ="status_fps" Content="FPS:" Width="Auto"/>
+            <StatusBarItem Name ="status_power" Content="电量:" Width="Auto"/>
             <StatusBarItem />
         </StatusBar>
         <Grid DockPanel.Dock="Left" Width="18" Visibility="Collapsed" MouseEnter="dockPanel2_MouseEnter"  Name="dockPanel2" VerticalAlignment="Center" HorizontalAlignment="Left" >
@@ -132,8 +133,22 @@
                     </d3:VerticalAxis>
                 </d3:ChartPlotter>
             </Grid>
-              
-        </UniformGrid >
+                <Grid Name="grid_power">
+                    <d3:ChartPlotter Name="chart_power" Opacity="0.5">
+                        <d3:Header FontSize="14" Content="系统电量消耗曲线图"/>
+                        <d3:HorizontalAxis HorizontalAlignment="Center">
+                            <d3:HorizontalIntegerAxis Content="时间(s)"></d3:HorizontalIntegerAxis>
+                        </d3:HorizontalAxis>
+                        <d3:VerticalAxis>
+                            <d3:VerticalIntegerAxis></d3:VerticalIntegerAxis>
+                        </d3:VerticalAxis>
+                    </d3:ChartPlotter>
+                    <Label Content="平均值：" Height="28" HorizontalAlignment="Left" Margin="60,30,0,0" Name="label_power" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" Opacity="0.5" />
+                    <Label Content="最大值：" Height="28" HorizontalAlignment="Left" Margin="60,51.677,0,0" Name="label_power_max" VerticalAlignment="Top" Width="auto" Panel.ZIndex="2" Opacity="0.5" />
+                </Grid>
+            
+
+            </UniformGrid >
             
             </Grid>
     </DockPanel>

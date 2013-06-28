@@ -93,6 +93,7 @@
     <Compile Include="FrameValueTextMarker.cs" />
     <Compile Include="KpiChart.cs" />
     <Compile Include="MemChart.cs" />
+    <Compile Include="PowerChart.cs" />
     <Compile Include="ThresholdSetting.xaml.cs">
       <DependentUpon>ThresholdSetting.xaml</DependentUpon>
     </Compile>
@@ -145,6 +146,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="chinpower.apk">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
