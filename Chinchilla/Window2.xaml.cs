@@ -74,6 +74,7 @@ namespace Chinchilla {
             Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/tmp/save", 0); 
             Executecmd.ExecuteCommandSync("adb push save_fps /data/local/tmp/save_fps", 0);
             Executecmd.ExecuteCommandSync("adb shell chmod 777 /data/local/tmp/save_fps", 0);
+            Executecmd.ExecuteCommandSync("adb install -r chinpower.apk", 0);
         }
 
         void initTextBox() {
