@@ -134,7 +134,11 @@ namespace Chinchilla {
             } else if (selectedPackage.Count > 5) {
                 MessageBox.Show("最多选择5个包监测", "提示");
             } else {
-                foreach (Basechart chart in testchart) {
+                foreach (Basechart chart in testchart) {                    
+                    if (chart is KpiChart && this.threValue.Count > 0)
+                    {
+                        ((KpiChart)chart).SafeDistance = int.Parse(this.threValue[3]) * 66;
+                    }
                     chart.updatechart(selectedPackage);
                 }
                 //testchart.Clear();          

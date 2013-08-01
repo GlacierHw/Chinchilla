@@ -30,6 +30,7 @@ namespace Chinchilla
             main.threValue.Add(this.textBox1.Text);
             main.threValue.Add(this.textBox2.Text);
             main.threValue.Add(this.textBox3.Text);
+            main.threValue.Add(this.textBox5.Text);
             this.Hide();
         }
 

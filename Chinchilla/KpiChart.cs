@@ -38,6 +38,19 @@ namespace Chinchilla {
         ObservableDataSource<Point> markerPoints = new ObservableDataSource<Point>();
         ObservableDataSource<Point> framePoints = new ObservableDataSource<Point>();
 
+        private int safeDistance = 100;
+        public int SafeDistance
+        {
+            set 
+            {
+                this.safeDistance = value; 
+            }
+            get
+            {
+                return this.safeDistance;
+            }
+        }
+
         public KpiChart(Dispatcher p, ChartPlotter newchart, Dictionary<string, string> packagelist)
             : base(p, newchart, packagelist) {
 
@@ -167,7 +180,7 @@ namespace Chinchilla {
 
                 int startIndex = 0;
                 int endIndex = 0;
-                int safeDistance = 100;
+                int safeDistance = this.safeDistance;
                 int safeDistanceCount = 0;
                 int pointShowStep = 4;
                 int pointCurrentStep = 0;
